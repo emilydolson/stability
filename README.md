@@ -7,6 +7,13 @@ A non-judgmental fitness app that doesn't make assumptions about your health nee
 - Log-in with Google
 - Pull your weight data from Google fit and graph the trend
 
+## Todo:
+
+- All other data types
+- Format website (probably split into multiple pages)
+- Write explanatory text
+- Add more options for what to show (numbers on graph)
+
 ## Note:
 
 This is a major work in progress - I add a feature every time I get angry enough at all of the apps that currently exist. I make no promises of it being done any time soon (unless someone wants to help...).
