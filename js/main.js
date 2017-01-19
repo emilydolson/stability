@@ -56,6 +56,29 @@ function getDataFromStream(streamId) {
   console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
   return gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
 }
+
+function getActivity(){
+  return gapi.client.request({
+    "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
+    "method" : "POST",
+    "body":{
+      "aggregateBy": [
+        {
+          "dataTypeName": "com.google.activity.segment"
+        }
+      ],
+      "endTimeMillis": Date.now(),
+      "startTimeMillis": "1482037200000",
+      "bucketByTime": {
+        "period": {
+          "type": "day",
+          "value": 1,
+          "timeZoneId": moment.tz.guess()
+        }}
+    }
+  });
+}
+
 function extractDataFromStreams(streams) {
   var data = [];
   for (stream in streams) {
