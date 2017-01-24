@@ -20,7 +20,7 @@ function signOut() {
   });
 }
 
-function start() {
+function getWeightData() {
   // 2. Initialize the JavaScript client library.
   gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources?dataTypeName=com.google.weight")
     .then(function(response) {
@@ -49,15 +49,20 @@ function start() {
   });
 };
 // 1. Load the JavaScript client library.
-function getData() {
-  gapi.load('client', start);
+function getWeight() {
+  gapi.load('client', getWeightData);
 }
+
 function getDataFromStream(streamId) {
   console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
   return gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
 }
 
 function getActivity(){
+  today = new Date()
+  days = 86400000 //number of milliseconds in a day
+  thirtyDaysAgo = new Date(today - (30*days))
+
   return gapi.client.request({
     "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
     "method" : "POST",
@@ -68,7 +73,7 @@ function getActivity(){
         }
       ],
       "endTimeMillis": Date.now(),
-      "startTimeMillis": "1482037200000",
+      "startTimeMillis": thirtyDaysAgo,
       "bucketByTime": {
         "period": {
           "type": "day",
