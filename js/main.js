@@ -59,9 +59,7 @@ function getDataFromStream(streamId) {
 }
 
 function getActivity(){
-  today = new Date()
-  days = 86400000 //number of milliseconds in a day
-  thirtyDaysAgo = new Date(today - (30*days))
+  day = 86400000 //number of milliseconds in a day
 
   return gapi.client.request({
     "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
@@ -73,7 +71,7 @@ function getActivity(){
         }
       ],
       "endTimeMillis": Date.now(),
-      "startTimeMillis": thirtyDaysAgo,
+      "startTimeMillis": Date.now() - (30*day),
       "bucketByTime": {
         "period": {
           "type": "day",
