@@ -5,6 +5,6 @@ app = Bottle()
 
 @app.route("/<filepath:path>")
 def server_static(filepath):
-    return static_file(filepath, root='~/stability')
+    return static_file(filepath, root='/home/ec2-user/stability')
 
-run(app, port=80, host='0.0.0.0')
+run(app, port=80, host='0.0.0.0', debug=True)
