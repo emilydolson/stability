@@ -10,7 +10,7 @@ function onSignIn(googleUser) {
   var access_token = googleUser.getAuthResponse().access_token;
   console.log("ID Token: " + access_token);
 
-  // gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/derived:com.google.weight:com.google.android.gms:merge_weight/datasets/0-1484461008")
+  loadGapi();
 }
 
 function onFailure(error) {
