@@ -24,7 +24,7 @@ function signOut() {
   });
 }
 
-function getWeightData() {
+function getWeight() {
   // 2. Initialize the JavaScript client library.
   gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources?dataTypeName=com.google.weight")
     .then(function(response) {
@@ -52,10 +52,14 @@ function getWeightData() {
     console.log('Error: ' + reason.result.error.message);
   });
 };
-// 1. Load the JavaScript client library.
-function getWeight() {
-  gapi.load('client', getWeightData);
+
+function enableButtions() {
+  d3.selectAll(".getdata").classed("disabled", false);
 }
+
+function loadGapi() {
+  gapi.load('client', enableButtions);
+};
 
 function getDataFromStream(streamId) {
   console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
