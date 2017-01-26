@@ -63,9 +63,9 @@ function getDataFromStream(streamId) {
 }
 
 function getActivity(){
-  day = 86400000 //number of milliseconds in a day
+  var day = 86400000 //number of milliseconds in a day
 
-  return gapi.client.request({
+  var activity_data = gapi.client.request({
     "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
     "method" : "POST",
     "body":{
@@ -84,6 +84,7 @@ function getActivity(){
         }}
     }
   });
+  activity_data.then(function(response){console.log(response);});
 }
 
 function extractDataFromStreams(streams) {
