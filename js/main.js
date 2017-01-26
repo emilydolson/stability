@@ -13,6 +13,10 @@ function onSignIn(googleUser) {
   // gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/derived:com.google.weight:com.google.android.gms:merge_weight/datasets/0-1484461008")
 }
 
+function onFailure(error) {
+  console.log(error);
+}
+
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
