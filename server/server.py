@@ -1,5 +1,6 @@
 from bottle import route, run, static_file, get, post, request
 import bottle, sqlite3
+from cherrypy.wsgiserver import CherryPyWSGIServer
 
 
 app = bottle.Bottle()
@@ -38,4 +39,14 @@ def server_static(filepath):
 #         return template('showitem', page=row)
 #     return HTTPError(404, "Page not found")
 
-run(app, port=80, host='0.0.0.0', debug=True)
+server = CherryPyWSGIServer(
+    ('0.0.0.0', 80),
+    app,
+    server_name='stability',
+    numthreads=30)
+
+# run(app, port=80, host='0.0.0.0', debug=True)
+try:
+    server.start()
+except KeyboardInterrupt:
+    server.stop()
