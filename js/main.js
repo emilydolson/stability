@@ -129,7 +129,7 @@ function extractDataFromStreams(streams) {
 
 function toggleLabelYAxis() {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "POST", "http://stability-app.com/update_settings", false ); // false for synchronous request
+  xmlHttp.open( "POST", "http://stability-app.com/update_settings", true );
   xmlHttp.send({"user":id_token, "value":true});
 }
 
