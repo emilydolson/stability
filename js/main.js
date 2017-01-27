@@ -128,12 +128,19 @@ function extractDataFromStreams(streams) {
 function makeGraph(data){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
+  max_y = d3.max(data, function(d){return d[1];});
+  min_y = d3.min(data, function(d){return d[1];});
+
+  //Add margins
+  max_y += max_y*.1
+  min_y -= min_y*.1
+
   var w = 960,
       h = 500,
       p = 35.5,
       n = 100,
       x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]),
-      y = d3.scaleLinear().domain([160,220]).range([h, 0]);
+      y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
 
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
