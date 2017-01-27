@@ -130,11 +130,10 @@ function extractDataFromStreams(streams) {
 function toggleLabelYAxis() {
   $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
-      dataType:"json",
       contentType:"application/json",
       data:JSON.stringify({"user":id_token, "value":true}),
-      success:function(data, textStatus, jqXHR) {alert("success");},
-      error: function(jqXHR, textStatus, errorThrown) {alert("failure");}
+      success:function() {alert("success");},
+      error: function() {alert("failure");}
   });
 
   // var xmlHttp = new XMLHttpRequest();
