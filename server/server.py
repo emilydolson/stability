@@ -20,7 +20,7 @@ conn = sqlite3.connect('user_settings.db')
 @app.post('/update_settings') # or @route('/login', method='POST')
 def update_settings():
     username = request.forms.get('user')
-    value = request.forms.get('value')
+    value = request.forms.get('label_y_axis')
     return "Hello " + username + " value is " + value
 
 @app.route("/<filepath:path>")
