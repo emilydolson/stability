@@ -7,7 +7,7 @@ app = bottle.Bottle()
 
 conn = sqlite3.connect('user_settings.db')
 
-@get('/login') # or @route('/login')
+@route('/login') # or @route('/login')
 def login():
     return """
         <form action="/login" method="post">
