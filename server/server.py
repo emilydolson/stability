@@ -20,6 +20,7 @@ conn = sqlite3.connect('user_settings.db')
 @app.post('/update_settings') # or @route('/login', method='POST')
 def update_settings():
     response.content_type = 'application/json'
+    return response
     username = response["user"]
     value = response["value"]
     # username = request.forms.get('user')
