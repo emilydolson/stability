@@ -22,9 +22,8 @@ def update_settings():
     # response.content_type = 'application/json'
     # username = response["user"]
     # value = response["value"]
-    data = request.json()
-    username = data["user"]
-    value = data["label_y_axis"]
+    username = request.json["user"]
+    value = request.json["value"]
     return "Hello " + username + " value is " + value
 
 @app.route("/<filepath:path>")
