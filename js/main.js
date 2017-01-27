@@ -5,6 +5,7 @@ var DAY = 86400000 //number of milliseconds in a day
 
 var weight_data;
 var all_activity_data;
+var id_token;
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -13,8 +14,8 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
 
-  var access_token = googleUser.getAuthResponse().access_token;
-  console.log("ID Token: " + access_token);
+  id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
 
   loadGapi();
 }
@@ -24,6 +25,7 @@ function onFailure(error) {
 }
 
 function signOut() {
+  id_token = null;
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
@@ -123,6 +125,12 @@ function extractDataFromStreams(streams) {
   }
 
   return data;
+}
+
+function toggleLabelYAxis() {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "POST", "http://stability-app.com/update_settings", false ); // false for synchronous request
+  xmlHttp.send({"user":id_token, "value":true});
 }
 
 function makeGraph(data){

@@ -7,25 +7,21 @@ app = bottle.Bottle()
 
 conn = sqlite3.connect('user_settings.db')
 
-@app.route('/login') # or @route('/login')
-def login():
-    return '''
-        <input type="checkbox"/>
-        <form action="/login" method="post">
-            Username: <input name="username" type="text" />
-            Password: <input name="password" type="password" />
-            <input value="Login" type="submit" />
-        </form>
-        '''
+# @app.route('/update_settings') # or @route('/login')
+# def login():
+#     return '''
+#         <form action="/login" method="post">
+#             Username: <input name="username" type="text" />
+#             Password: <input name="password" type="password" />
+#             <input value="Login" type="submit" />
+#         </form>
+#         '''
 
-@app.post('/login') # or @route('/login', method='POST')
-def do_login():
-    username = request.forms.get('username')
-    password = request.forms.get('password')
-    if True:
-        return "<p>Your login information was correct.</p>"
-    else:
-        return "<p>Login failed.</p>"
+@app.post('/update_settings') # or @route('/login', method='POST')
+def update_settings():
+    username = request.forms.get('user')
+    value = request.forms.get('value')
+    return "Hello " + username + " value is " + value
 
 @app.route("/<filepath:path>")
 def server_static(filepath):
