@@ -128,7 +128,7 @@ function extractDataFromStreams(streams) {
 }
 
 function toggleLabelYAxis() {
-  $.ajax("http://stability-app.com/update_settings", {
+  $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
       dataType:"json",
       data:{"user":id_token, "value":true},

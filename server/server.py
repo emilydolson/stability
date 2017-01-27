@@ -1,6 +1,5 @@
 from bottle import route, run, static_file, get, post, request
 import bottle, sqlite3
-import cherrypy
 
 
 app = bottle.Bottle()
@@ -45,7 +44,7 @@ def server_static(filepath):
 #     server_name='stability',
 #     numthreads=30)
 
-run(app, server="cherrypy", port=80, host='0.0.0.0', debug=True)
+run(app, server="tornado", port=80, host='0.0.0.0', debug=True)
 # try:
 #     server.start()
 # except KeyboardInterrupt:
