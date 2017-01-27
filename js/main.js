@@ -132,8 +132,8 @@ function makeGraph(data){
   min_y = d3.min(data, function(d){return d[1];});
 
   //Add margins
-  max_y += max_y*.1
-  min_y -= min_y*.1
+  max_y += max_y*.2
+  min_y -= min_y*.2
 
   var w = 960,
       h = 500,
