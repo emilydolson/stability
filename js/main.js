@@ -1,4 +1,10 @@
-var curr_time = (Math.floor(Date.now() / 1000)+31536000) * 1000000000;
+var CURR_TIME = (Math.floor(Date.now() / 1000)+31536000) * 1000000000;
+var NON_ACTIVE_NUMBERS = [0, 3, 4, 5, 72, 109, 110, 111, 112] //2 = on foot... not sure how to count that
+var SLEEP_NUMBERS = [79, 109, 110, 111]
+var DAY = 86400000 //number of milliseconds in a day
+
+var weight_data;
+var all_activity_data;
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -45,7 +51,7 @@ function getWeight() {
           // Extract data from JSON object and convert kg to pounds
           data[el] = [new Date(+data[el].endTimeNanos/1000000), data[el].value[0].fpVal*2.20462];
         }
-        console.log(data);
+        weight_data = data;
         makeGraph(data);
       });
   }, function(reason) {
@@ -62,12 +68,11 @@ function loadGapi() {
 };
 
 function getDataFromStream(streamId) {
-  console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
-  return gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+curr_time);
+  console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+CURR_TIME);
+  return gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+CURR_TIME);
 }
 
 function getActivity(){
-  var day = 86400000 //number of milliseconds in a day
 
   var activity_data = gapi.client.request({
     "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
@@ -79,7 +84,7 @@ function getActivity(){
         }
       ],
       "endTimeMillis": Date.now(),
-      "startTimeMillis": Date.now() - (30*day),
+      "startTimeMillis": Date.now() - (30*DAY),
       "bucketByTime": {
         "period": {
           "type": "day",
@@ -88,7 +93,24 @@ function getActivity(){
         }}
     }
   });
-  activity_data.then(function(response){console.log(response);});
+  activity_data.then(function(response){
+    all_activity_data = response.result.bucket;
+
+  }, function(reason) {
+    console.log('Error: ' + reason.result.error.message);
+  });
+}
+
+function graphSleepData(){
+  sleep_data = [];
+  for (i in all_activity_data) {
+    for (j in all_activity_data[i].dataset[0].point){
+      if (all_activity_data[i].dataset[0].point[j].value[0].intVal == 72) {
+        sleep_data.push(ll_activity_data[i].dataset[0].point[j].value[1].intVal);
+      }
+    }
+  }
+  makeGraph(sleep_data);
 }
 
 function extractDataFromStreams(streams) {
