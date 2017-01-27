@@ -25,28 +25,55 @@
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
-  <body>
+  <body class="has-drawer">
 
-    <div id="results"></div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="deps/bootstrap-drawer-1.0.6/dist/js/drawer.min.js"></script>
-    <script src="js/d3.min.js"></script>
-    <script src="js/science.v1.min.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script src="js/moment-timezone-with-data.js"></script>
-    <script src="js/main.js"></script>
+    <div id="drawerExample" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold" aria-labelledby="drawerExample">
+        <div class="drawer-controls">
+            <a href="#drawerExample" data-toggle="drawer" aria-foldedopen="false" aria-controls="drawerExample" class="btn btn-primary btn-sm">Menu</a>
+        </div>
+        <div class="drawer-contents">
+            <div class="drawer-heading">
+                <h2 class="drawer-title">Menu</h2>
+            </div>
+            <div class="drawer-body">
+                <p>
+                    This is a properly padded container for content in the
+                    drawer that isn't a navigation.
+                </p>
+                <a href="#">A Regular Link</a>
+            </div>
+            <ul class="drawer-nav">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+            <div class="drawer-footer">
+                <small>&copy; Caroline Amaba</small>
+            </div>
+        </div>
+    </div>
 
-    <h1>Stability</h1>    <div class="g-signin2" data-onfailure="onFailure" data-onsuccess="onSignIn"></div> <a href="#" onclick="signOut();">Sign out</a>
+    <div class="container">
+      <div id="results"></div>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="js/bootstrap.min.js"></script>
+      <script src="deps/bootstrap-drawer-1.0.6/dist/js/drawer.min.js"></script>
+      <script src="js/d3.min.js"></script>
+      <script src="js/science.v1.min.js"></script>
+      <script src="js/moment.min.js"></script>
+      <script src="js/moment-timezone-with-data.js"></script>
+      <script src="js/main.js"></script>
 
-    <button type="button" class="btn btn-default btn-lg disabled getdata" onclick="getWeight();">
-      <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Get Data
-    </button>
-    <button type="button" class="btn btn-default btn-lg disabled getdata" onclick="getActivity();">
-      <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Get Data
-    </button>
-    <div id=vis></div>
+      <h1>Stability</h1>    <div class="g-signin2" data-onfailure="onFailure" data-onsuccess="onSignIn"></div> <a href="#" onclick="signOut();">Sign out</a>
+
+      <button type="button" class="btn btn-default btn-lg disabled getdata" onclick="getWeight();">
+        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Get Data
+      </button>
+      <button type="button" class="btn btn-default btn-lg disabled getdata" onclick="getActivity();">
+        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Get Data
+      </button>
+      <div id=vis></div>
   </body>
 </html>
