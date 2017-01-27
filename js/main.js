@@ -128,9 +128,17 @@ function extractDataFromStreams(streams) {
 }
 
 function toggleLabelYAxis() {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "POST", "http://stability-app.com/update_settings", true );
-  xmlHttp.send({"user":id_token, "value":true});
+  $.ajax("http://stability-app.com/update_settings", {
+      type:"POST",
+      dataType:"json",
+      data:{"user":id_token, "value":true},
+      success:function(data, textStatus, jqXHR) {alert("success");},
+      error: function(jqXHR, textStatus, errorThrown) {alert("failure");}
+  });
+
+  // var xmlHttp = new XMLHttpRequest();
+  // xmlHttp.open( "POST", "http://stability-app.com/update_settings", true );
+  // xmlHttp.send({"user":id_token, "value":true});
 }
 
 function makeGraph(data){
