@@ -45,7 +45,7 @@ def server_static(filepath):
 #     server_name='stability',
 #     numthreads=30)
 
-run(app, server="tornado", port=80, host='0.0.0.0', debug=True)
+run(app, server="tornado", port=80, host='0.0.0.0', debug=True, reloader=True)
 # try:
 #     server.start()
 # except KeyboardInterrupt:
