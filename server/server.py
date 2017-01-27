@@ -24,7 +24,7 @@ def update_settings():
     # value = response["value"]
     username = request.json["user"]
     value = request.json["value"]
-    return "Hello " + username + " value is " + value
+    return "Hello " + str(username) + " value is " + str(value)
 
 @app.route("/<filepath:path>")
 def server_static(filepath):
