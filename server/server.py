@@ -9,13 +9,13 @@ conn = sqlite3.connect('user_settings.db')
 
 @route('/login') # or @route('/login')
 def login():
-    return """
+    return '''
         <form action="/login" method="post">
             Username: <input name="username" type="text" />
             Password: <input name="password" type="password" />
             <input value="Login" type="submit" />
         </form>
-        """
+        '''
 
 @post('/login') # or @route('/login', method='POST')
 def do_login():
