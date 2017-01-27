@@ -1,6 +1,6 @@
 from bottle import route, run, static_file, get, post, request
 import bottle, sqlite3
-import cherrpy
+import cherrypy
 
 
 app = bottle.Bottle()
