@@ -106,7 +106,7 @@ function graphSleepData(){
   for (i in all_activity_data) {
     for (j in all_activity_data[i].dataset[0].point){
       if (all_activity_data[i].dataset[0].point[j].value[0].intVal == 72) {
-        sleep_data.push([new Date(+all_activity_data[i].dataset[0].point[j].startTimeNanos/1000000), all_activity_data[i].dataset[0].point[j].value[1].intVal]);
+        sleep_data.push([new Date(+all_activity_data[i].dataset[0].point[j].startTimeNanos/1000000), +all_activity_data[i].dataset[0].point[j].value[1].intVal/60000]);
       }
     }
   }
