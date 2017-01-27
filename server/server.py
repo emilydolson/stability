@@ -10,6 +10,7 @@ conn = sqlite3.connect('user_settings.db')
 @app.route('/login') # or @route('/login')
 def login():
     return '''
+        <input type="checkbox"/>
         <form action="/login" method="post">
             Username: <input name="username" type="text" />
             Password: <input name="password" type="password" />
@@ -26,9 +27,9 @@ def do_login():
     else:
         return "<p>Login failed.</p>"
 
-# @app.route("/<filepath:path>")
-# def server_static(filepath):
-#     return static_file(filepath, root='/home/ec2-user/stability')
+@app.route("/<filepath:path>")
+def server_static(filepath):
+    return static_file(filepath, root='/home/ec2-user/stability')
 
 
 # @app.route('/show/:item')
