@@ -131,6 +131,7 @@ function toggleLabelYAxis() {
   $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
       dataType:"json",
+      contentType:"application/json",
       data:{"user":id_token, "value":true},
       success:function(data, textStatus, jqXHR) {alert("success");},
       error: function(jqXHR, textStatus, errorThrown) {alert("failure");}
