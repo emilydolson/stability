@@ -17,6 +17,15 @@ def login():
         </form>
         """
 
+@post('/login') # or @route('/login', method='POST')
+def do_login():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    if True:
+        return "<p>Your login information was correct.</p>"
+    else:
+        return "<p>Login failed.</p>"
+
 @app.route("/<filepath:path>")
 def server_static(filepath):
     return static_file(filepath, root='/home/ec2-user/stability')
