@@ -19,11 +19,13 @@ function onSignIn(googleUser) {
   d3.select("#settings-drawer-header")
     .append("a")
       .attr("href", "#")
+      .attr("id", "signout-link")
       .attr("onclick", "signOut();")
       .text("Sign out");
 
   d3.select("#settings-drawer-header")
     .append("img")
+      .attr("id", "profile-pic")
       .attr("src", profile.getImageUrl())
       .classed("demo-avatar", true);
 
@@ -41,6 +43,8 @@ function signOut() {
   id_token = null;
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
+    d3.select("#signout-link").remove();
+    d3.select("#profile-pic").remove();
     console.log('User signed out.');
   });
 }
