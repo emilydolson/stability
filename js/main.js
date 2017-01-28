@@ -25,7 +25,7 @@ function onSignIn(googleUser) {
   d3.select("#settings-drawer-header")
     .append("img")
       .attr("src", profile.getImageUrl())
-      .classed("demo-avatar");
+      .classed("demo-avatar", true);
 
 
   // <img src="images/user.jpg" class="demo-avatar">
