@@ -89,17 +89,17 @@
               <!-- <a class="mdl-navigation__link" href="">Link</a>
               <a class="mdl-navigation__link" href="">Link</a>
               <a class="mdl-navigation__link" href="">Link</a> -->
-              <div class="g-signin2" data-onfailure="onFailure" data-onsuccess="onSignIn"></div>
-              <a href="#" onclick="signOut();">Sign out</a>
+              <!-- <a class="mdl-navigation__link">    </a> -->
             </nav>
           </div>
         </header>
         <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-          <header class="demo-drawer-header">
+          <header id="settings-drawer-header" class="demo-drawer-header">
             <span class="mdl-layout-title">Settings</span>
             <div class="mdl-layout-spacer"></div>
-            <img src="images/user.jpg" class="demo-avatar">
-            <div class="demo-avatar-dropdown">
+            <div class="g-signin2" data-onfailure="onFailure" data-onsuccess="onSignIn"></div>
+
+            <!-- <div class="demo-avatar-dropdown">
               <span>hello@example.com</span>
               <div class="mdl-layout-spacer"></div>
               <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -111,7 +111,7 @@
                 <li class="mdl-menu__item">info@example.com</li>
                 <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
               </ul>
-            </div>
+            </div> -->
           </header>
 
           <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">

@@ -16,6 +16,12 @@ function onSignIn(googleUser) {
 
   id_token = googleUser.getAuthResponse().id_token;
   console.log("ID Token: " + id_token);
+  d3.select("#settings-drawer-header")
+    .append("a")
+      .attr("onclick", "signout();")
+      .text("Sign out");
+  // <a href="#" onclick="signOut();">Sign out</a>
+  // <img src="images/user.jpg" class="demo-avatar">
 
   loadGapi();
 }
