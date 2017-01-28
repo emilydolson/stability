@@ -18,6 +18,7 @@ function onSignIn(googleUser) {
   console.log("ID Token: " + id_token);
   d3.select("#settings-drawer-header")
     .append("a")
+      .attr("href", "#")
       .attr("onclick", "signout();")
       .text("Sign out");
   // <a href="#" onclick="signOut();">Sign out</a>
