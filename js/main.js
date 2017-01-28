@@ -21,7 +21,13 @@ function onSignIn(googleUser) {
       .attr("href", "#")
       .attr("onclick", "signOut();")
       .text("Sign out");
-  // <a href="#" onclick="signOut();">Sign out</a>
+
+  d3.select("#settings-drawer-header")
+    .append("img")
+      .attr("src", profile.getImageUrl())
+      .classed("demo-avatar");
+
+
   // <img src="images/user.jpg" class="demo-avatar">
 
   loadGapi();
