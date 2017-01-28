@@ -19,7 +19,7 @@ function onSignIn(googleUser) {
   d3.select("#settings-drawer-header")
     .append("a")
       .attr("href", "#")
-      .attr("onclick", signOut)
+      .attr("onclick", "signOut();")
       .text("Sign out");
   // <a href="#" onclick="signOut();">Sign out</a>
   // <img src="images/user.jpg" class="demo-avatar">
