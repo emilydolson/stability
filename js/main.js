@@ -47,6 +47,7 @@ function signOut() {
   auth2.signOut().then(function () {
     d3.select("#signout-link").remove();
     d3.select("#profile-pic").remove();
+    d3.select("#sign-in-button").classed("visuallyhidden", false);
     console.log('User signed out.');
   });
 }
