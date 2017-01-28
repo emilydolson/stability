@@ -18,6 +18,13 @@ function onSignIn(googleUser) {
   id_token = googleUser.getAuthResponse().id_token;
 
   console.log("ID Token: " + id_token);
+
+  d3.select("#settings-drawer-header")
+    .append("img")
+      .attr("id", "profile-pic")
+      .attr("src", profile.getImageUrl())
+      .classed("demo-avatar", true);
+
   d3.select("#settings-drawer-header")
     .append("a")
       .attr("href", "#")
@@ -25,11 +32,6 @@ function onSignIn(googleUser) {
       .attr("onclick", "signOut();")
       .text("Sign out");
 
-  d3.select("#settings-drawer-header")
-    .append("img")
-      .attr("id", "profile-pic")
-      .attr("src", profile.getImageUrl())
-      .classed("demo-avatar", true);
 
 
   // <img src="images/user.jpg" class="demo-avatar">
