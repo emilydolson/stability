@@ -252,7 +252,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   position: absolute;
   top: 0;
   left: 0;
-  
+
   zindex: 900;
 
   -webkit-transform: rotateX(0) rotateY(0);
@@ -264,7 +264,6 @@ _:-ms-input-placeholder, :root .demo-graph {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 
-  /* -- transition is the magic sauce for animation -- */
   -webkit-transition: all .4s ease-in-out;
           transition: all .4s ease-in-out;
 }
@@ -289,7 +288,6 @@ _:-ms-input-placeholder, :root .demo-graph {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 
-  /* -- transition is the magic sauce for animation -- */
   -webkit-transition: all .4s ease-in-out;
           transition: all .4s ease-in-out;
 }
@@ -301,7 +299,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 }
 
-/* -- X axis rotation for click panel -- */
 .click .front {
   cursor: pointer;
   -webkit-transform: rotateY(0);
