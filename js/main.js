@@ -53,7 +53,7 @@ function addCard(variable) {
         .classed("mdl-card__title mdl-color--teal-300", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
-        .text(variable);
+        .text(variable.replace("-"," "));
 
   card.append("div")
       .classed("mdl-card__supporting-text mdl-color-text--grey-600", true)
@@ -71,7 +71,7 @@ function addCard(variable) {
     graphSleepData();
   } else if (variable == "Weight") {
     makeGraph(weight_data, "#Weight-graph", .8);
-  } else if (variable == "Active Time") {
+  } else if (variable == "Active-time") {
     graphTotalActivityData();
   }
 }
@@ -250,7 +250,7 @@ function makeGraph(data, svg_id, smoothing){
       .attr("height", h + p + p)
     .append("g")
       .attr("transform", "translate(" + p + "," + p + ")");
-
+      conole.log(vis);
   var area = d3.area()
         .x(function(d) { return x(d[0]); })
         .y0(function(d) { return d[2] ? y(d[1]-d[2]) : y(d[1]);})
