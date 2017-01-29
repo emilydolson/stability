@@ -195,7 +195,7 @@ function makeGraph(data, svg_id){
   max_y += max_y*.2
   min_y -= min_y*.2
 
-  var w = 500,
+  var w = document.getElementById("svg_id").offsetWidth,
       h = 500,
       p = 35.5,
       n = 100,
