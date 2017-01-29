@@ -239,6 +239,13 @@ _:-ms-input-placeholder, :root .demo-graph {
           align-items: center;
 }
 
+.panel {
+  float: left;
+  position: relative;
+
+  -webkit-perspective: 600px;
+}
+
 .panel .front {
   -webkit-transform: rotateX(0) rotateY(0);
           transform: rotateX(0) rotateY(0);
