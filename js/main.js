@@ -232,8 +232,8 @@ function makeGraph(data, svg_id, smoothing){
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
 
-  max_y = d3.max(data, function(d){return d[2] ? y(d[1]+d[2]) : y(d[1]);});
-  min_y = d3.min(data, function(d){return d[2] ? y(d[1]-d[2]) : y(d[1]);});
+  max_y = d3.max(data, function(d){return d[2] ? d[1]+d[2] : d[1];});
+  min_y = d3.min(data, function(d){return d[2] ? d[1]-d[2] : d[1];});
 
   //Add margins
   max_y += max_y*.1
