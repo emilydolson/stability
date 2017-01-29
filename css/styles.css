@@ -158,6 +158,15 @@ _:-ms-input-placeholder, :root .demo-graph {
   color: #d9006e;
 }
 
+.mdl-button--floating-action {
+  bottom:45px;
+  margin-bottom:100px;
+  padding-top:24px;
+  position:fixed;
+  right:24px;
+  z-index:998;
+}
+
 .demo-cards {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
