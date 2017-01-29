@@ -188,12 +188,6 @@ function toggleLabelYAxis() {
 function makeGraph(data, svg_id){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
-  max_y = d3.max(data, function(d){return d[1];});
-  min_y = d3.min(data, function(d){return d[1];});
-
-  //Add margins
-  max_y += max_y*.2
-  min_y -= min_y*.2
 
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
@@ -203,6 +197,25 @@ function makeGraph(data, svg_id){
       n = 100;
 
   w -= 2*p; //margins need to come out of width
+
+
+  var min_band = 2/data.length;
+
+  var loess = science.stats.loess().bandwidth(d3.max([min_band, .8]));
+
+  var zipped_data = d3.transpose(data);
+  var loess_result = loess(zipped_data[0], zipped_data[1]);
+  console.log("loess", loess_result);
+  zipped_data[1] = loess_result.loess;
+  zipped_data.push(loess_result.confint);
+  data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
+
+  max_y = d3.max(data, function(d){return d[1]+d[2];});
+  min_y = d3.min(data, function(d){return d[1]-d[2];});
+
+  //Add margins
+  max_y += max_y*.1
+  min_y -= min_y*.1
 
   var x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]);
   var y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
@@ -216,17 +229,6 @@ function makeGraph(data, svg_id){
       .attr("height", h + p + p)
     .append("g")
       .attr("transform", "translate(" + p + "," + p + ")");
-
-  var min_band = 2/data.length;
-
-  var loess = science.stats.loess().bandwidth(d3.max([min_band, .8]));
-
-  var zipped_data = d3.transpose(data);
-  var loess_result = loess(zipped_data[0], zipped_data[1]);
-  console.log("loess", loess_result);
-  zipped_data[1] = loess_result.loess;
-  zipped_data.push(loess_result.confint);
-  data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
 
   var area = d3.area()
         .x(function(d) { return x(d[0]); })
