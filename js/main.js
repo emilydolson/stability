@@ -70,7 +70,7 @@ function addCard(variable) {
   if (variable == "Sleep") {
     graphSleepData();
   } else if (variable == "Weight") {
-    makeGraph(weight_data, "#Weight-graph");
+    makeGraph(weight_data, "#Weight-graph", .8);
   }
 }
 
@@ -156,7 +156,7 @@ function graphSleepData(){
       }
     }
   }
-  makeGraph(sleep_data, "#Sleep-graph");
+  makeGraph(sleep_data, "#Sleep-graph", .2);
 }
 
 function extractDataFromStreams(streams) {
@@ -185,7 +185,7 @@ function toggleLabelYAxis() {
   // xmlHttp.send({"user":id_token, "value":true});
 }
 
-function makeGraph(data, svg_id){
+function makeGraph(data, svg_id, smoothing){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
 
@@ -201,7 +201,7 @@ function makeGraph(data, svg_id){
 
   var min_band = 2/data.length;
 
-  var loess = science.stats.loess().bandwidth(d3.max([min_band, .8]));
+  var loess = science.stats.loess().bandwidth(d3.max([min_band, smoothing]));
 
   var zipped_data = d3.transpose(data);
   var loess_result = loess(zipped_data[0], zipped_data[1]);
