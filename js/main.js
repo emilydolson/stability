@@ -47,7 +47,7 @@ function signOut() {
 function addCard(variable) {
   var card = d3.select("#card-area")
     .append("div")
-    .classed("mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--6-col-desktop", true)
+    .classed("mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
 
   card.append("div")
         .classed("mdl-card__title mdl-color--teal-300", true)
