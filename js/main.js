@@ -54,6 +54,24 @@ function addCard(variable) {
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable);
+
+  card.append("div")
+      .classed("mdl-card__supporting-text mdl-color-text--grey-600", true)
+      .append("div")
+      .attr("id", variable+"-graph");
+
+  card.append("div")
+        .classed("mdl-card__actions mdl-card--border", true)
+      .append("a")
+        .attr("href", "#")
+        .classed("mdl-button mdl-js-button mdl-js-ripple-effect", true)
+        .text("Read More");
+
+  if (variable == "Sleep") {
+    graphSleepData();
+  } elif (variable == "Weight") {
+    makeGraph(weight_data, "#Weight-graph");
+  }
 }
 
 function getWeight() {
@@ -138,7 +156,7 @@ function graphSleepData(){
       }
     }
   }
-  makeGraph(sleep_data, "#sleep-graph");
+  makeGraph(sleep_data, "#Sleep-graph");
 }
 
 function extractDataFromStreams(streams) {
