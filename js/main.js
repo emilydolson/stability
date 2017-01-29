@@ -44,6 +44,18 @@ function signOut() {
   });
 }
 
+function addCard(variable) {
+  var card = d3.select("#card-area")
+    .append("div")
+    .classed("mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--6-col-desktop", true)
+
+  card.append("div")
+        .classed("mdl-card__title mdl-color--teal-300", true)
+      .append("h2")
+        .classed("mdl-card__title-text", true)
+        .text(variable);
+}
+
 function getWeight() {
   // 2. Initialize the JavaScript client library.
   gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources?dataTypeName=com.google.weight")
