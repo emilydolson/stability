@@ -250,8 +250,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 .panel .front {
   float: none;
   position: absolute;
-  /*top: 0;
-  left: 0;*/
+  top: 0;
+  left: 0;
   zindex: 900;
 
   -webkit-transform: rotateX(0) rotateY(0);
@@ -276,8 +276,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 .panel .back {
   float: none;
   position: absolute;
-  /*top: 0;
-  left: 0;*/
+  top: 0;
+  left: 0;
   z-index: 800;
   -webkit-transform: rotateY(-179deg);
           transform: rotateY(-179deg);
