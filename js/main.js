@@ -69,7 +69,7 @@ function addCard(variable) {
 
   if (variable == "Sleep") {
     graphSleepData();
-  } elif (variable == "Weight") {
+  } else if (variable == "Weight") {
     makeGraph(weight_data, "#Weight-graph");
   }
 }
