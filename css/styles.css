@@ -159,11 +159,11 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .mdl-button--floating-action {
-  bottom:1%;
+  bottom:10%;
   margin-bottom:10px;
   padding-top:24px;
   position:fixed;
-  right:1%;
+  right:10%;
   z-index:998;
 }
 
