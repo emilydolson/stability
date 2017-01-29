@@ -248,9 +248,9 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .panel .front {
-  /*float: none;
+  float: none;
   position: absolute;
-  top: 0;
+  /*top: 0;
   left: 0;*/
   zindex: 900;
 
