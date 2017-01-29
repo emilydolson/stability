@@ -156,7 +156,7 @@ function graphSleepData(){
       }
     }
   }
-  makeGraph(sleep_data, "#Sleep-graph", .2);
+  makeGraph(sleep_data, "#Sleep-graph", .3);
 }
 
 function extractDataFromStreams(streams) {
