@@ -155,7 +155,9 @@ function graphSleepData(){
       sleep_data.push([new Date(+all_activity_data[i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
     for (j in all_activity_data[i].dataset[0].point){
+      console.log(all_activity_data[i].dataset[0].point[j].value[0].intVal);
       if (SLEEP_NUMBERS.includes(+all_activity_data[i].dataset[0].point[j].value[0].intVal)) {
+        console.log("adding");
         sleep_data[sleep_data.length-1][1] += +all_activity_data[i].dataset[0].point[j].value[1].intVal/3600000;
       }
     }
