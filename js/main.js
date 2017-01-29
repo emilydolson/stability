@@ -45,7 +45,7 @@ function signOut() {
 }
 
 function addCard(variable) {
-  console.log(variable);
+
   var card = d3.select("#card-area")
     .append("div")
     .classed("mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
@@ -251,7 +251,7 @@ function makeGraph(data, svg_id, smoothing){
       .attr("height", h + p + p)
     .append("g")
       .attr("transform", "translate(" + p + "," + p + ")");
-      conole.log(vis);
+
   var area = d3.area()
         .x(function(d) { return x(d[0]); })
         .y0(function(d) { return d[2] ? y(d[1]-d[2]) : y(d[1]);})
