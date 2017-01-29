@@ -71,6 +71,8 @@ function addCard(variable) {
     graphSleepData();
   } else if (variable == "Weight") {
     makeGraph(weight_data, "#Weight-graph", .8);
+  } else if (variable == "Active Time") {
+    graphTotalActivityData();
   }
 }
 
@@ -105,7 +107,7 @@ function getWeight() {
 function loadData() {
   // d3.selectAll(".getdata").classed("disabled", false);
   getWeight();
-  getActivity()
+  getActivity();
 }
 
 function loadGapi() {
@@ -140,7 +142,6 @@ function getActivity(){
   });
   activity_data.then(function(response){
     all_activity_data = response.result.bucket;
-    graphSleepData();
 
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
@@ -151,13 +152,10 @@ function graphSleepData(){
   sleep_data = [];
   for (i in all_activity_data) {
     if (all_activity_data[i].dataset[0].point.length > 0) {
-      console.log(true);
       sleep_data.push([new Date(+all_activity_data[i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
     for (j in all_activity_data[i].dataset[0].point){
-      console.log(all_activity_data[i].dataset[0].point[j].value[0].intVal);
       if (SLEEP_NUMBERS.includes(+all_activity_data[i].dataset[0].point[j].value[0].intVal)) {
-        console.log("adding");
         sleep_data[sleep_data.length-1][1] += +all_activity_data[i].dataset[0].point[j].value[1].intVal/3600000;
       }
     }
@@ -168,13 +166,17 @@ function graphSleepData(){
 function graphTotalActivityData(){
   data = [];
   for (i in all_activity_data) {
+    if (all_activity_data[i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_activity_data[i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+    }
     for (j in all_activity_data[i].dataset[0].point){
-      if (SLEEP_NUMBERS.includes(all_activity_data[i].dataset[0].point[j].value[0].intVal)) {
-        data.push([new Date(+all_activity_data[i].dataset[0].point[j].startTimeNanos/1000000), +all_activity_data[i].dataset[0].point[j].value[1].intVal/3600000]);
+      if (!NON_ACTIVE_NUMBERS.includes(+all_activity_data[i].dataset[0].point[j].value[0].intVal)) {
+        data[data.length-1][1] += +all_activity_data[i].dataset[0].point[j].value[1].intVal/3600000;
       }
     }
   }
-  makeGraph(data, "#Activity-graph", .5);
+
+  makeGraph(data, "#Active-time-graph", .5);
 }
 
 
