@@ -158,12 +158,24 @@ _:-ms-input-placeholder, :root .demo-graph {
   color: #d9006e;
 }
 
+.demo-list-control {
+  width: 300px;
+}
+
 .mdl-button--floating-action {
   bottom:1%;
   margin-bottom:10px;
   padding-top:24px;
   position:fixed;
   right:10%;
+  z-index:998;
+}
+
+.card-settings-menu {
+  top:1%;
+  margin-top:10px;
+  right:1%;
+  position:absolute;;
   z-index:998;
 }
 
@@ -225,4 +237,66 @@ _:-ms-input-placeholder, :root .demo-graph {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.panel .front {
+  -webkit-transform: rotateX(0) rotateY(0);
+          transform: rotateX(0) rotateY(0);
+
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+
+  /* -- transition is the magic sauce for animation -- */
+  -webkit-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+}
+.panel.flip .front {
+
+  -webkit-transform: rotateY(179deg);
+          transform: rotateY(179deg);
+}
+
+.panel .back {
+  -webkit-transform: rotateY(-179deg);
+          transform: rotateY(-179deg);
+
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+
+  /* -- transition is the magic sauce for animation -- */
+  -webkit-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+}
+
+.panel.flip .back {
+
+  -webkit-transform: rotateX(0) rotateY(0);
+          transform: rotateX(0) rotateY(0);
+
+}
+
+/* -- X axis rotation for click panel -- */
+.click .front {
+  cursor: pointer;
+  -webkit-transform: rotateX(0);
+          transform: rotateX(0);
+}
+.click.flip .front {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+.click .back {
+  cursor: pointer;
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+.click.flip .back {
+  -webkit-transform: rotateX(0);
+          transform: rotateX(0);
 }

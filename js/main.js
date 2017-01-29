@@ -27,6 +27,9 @@ function onSignIn(googleUser) {
       .text("Sign out");
 
   loadGapi();
+  d3.selectAll(".click")
+    .on("click", function(d, i, el){
+      d3.select(el[0]).classed("flip", !d3.select(el[0]).classed("flip"))});
 }
 
 function onFailure(error) {
