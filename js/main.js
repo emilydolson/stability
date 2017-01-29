@@ -10,14 +10,8 @@ var id_token;
 function onSignIn(googleUser) {
   d3.select("#sign-in-button").classed("visuallyhidden", true);
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
 
   id_token = googleUser.getAuthResponse().id_token;
-
-  console.log("ID Token: " + id_token);
 
   d3.select("#settings-drawer-header")
     .append("img")
@@ -31,10 +25,6 @@ function onSignIn(googleUser) {
       .attr("id", "signout-link")
       .attr("onclick", "signOut();")
       .text("Sign out");
-
-
-
-  // <img src="images/user.jpg" class="demo-avatar">
 
   loadGapi();
 }
@@ -76,19 +66,20 @@ function getWeight() {
           data[el] = [new Date(+data[el].endTimeNanos/1000000), data[el].value[0].fpVal*2.20462];
         }
         weight_data = data;
-        makeGraph(data);
       });
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
   });
 };
 
-function enableButtions() {
-  d3.selectAll(".getdata").classed("disabled", false);
+function loadData() {
+  // d3.selectAll(".getdata").classed("disabled", false);
+  getWeight();
+  getActivity()
 }
 
 function loadGapi() {
-  gapi.load('client', enableButtions);
+  gapi.load('client', loadData);
 };
 
 function getDataFromStream(streamId) {
@@ -119,6 +110,7 @@ function getActivity(){
   });
   activity_data.then(function(response){
     all_activity_data = response.result.bucket;
+    graphSleepData();
 
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
@@ -134,7 +126,7 @@ function graphSleepData(){
       }
     }
   }
-  makeGraph(sleep_data);
+  makeGraph(sleep_data, "#sleep-graph");
 }
 
 function extractDataFromStreams(streams) {
@@ -163,7 +155,7 @@ function toggleLabelYAxis() {
   // xmlHttp.send({"user":id_token, "value":true});
 }
 
-function makeGraph(data){
+function makeGraph(data, svg_id){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
   max_y = d3.max(data, function(d){return d[1];});
@@ -183,7 +175,7 @@ function makeGraph(data){
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
 
-  var vis = d3.select("#vis")
+  var vis = d3.select(svg_id)
     .append("svg")
       .attr("width", w + p + p)
       .attr("height", h + p + p)
