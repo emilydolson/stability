@@ -237,10 +237,12 @@ function makeGraph(data, svg_id, smoothing){
 
   //Add margins
   max_y += max_y*.2
-  min_y -= min_y*.2
+  if (min_y > 0) {
+    min_y -= min_y*.2;
+  }
 
   var x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]);
-  var y = d3.scaleLinear().domain([min_y, max_y]).range([h-p, 0]);
+  var y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
 
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
