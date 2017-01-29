@@ -1,6 +1,6 @@
 var CURR_TIME = (Math.floor(Date.now() / 1000)+31536000) * 1000000000;
 var NON_ACTIVE_NUMBERS = [0, 3, 4, 5, 72, 109, 110, 111, 112] //2 = on foot... not sure how to count that
-var SLEEP_NUMBERS = [79, 109, 110, 111]
+var SLEEP_NUMBERS = [72, 109, 110, 111]
 var DAY = 86400000 //number of milliseconds in a day
 
 var weight_data;
