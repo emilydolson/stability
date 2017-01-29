@@ -236,8 +236,8 @@ function makeGraph(data, svg_id, smoothing){
   min_y = d3.min(data, function(d){return d[2] ? d[1]-d[2] : d[1];});
 
   //Add margins
-  max_y += max_y*.1
-  min_y -= min_y*.1
+  max_y += max_y*.2
+  min_y -= min_y*.2
 
   var x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]);
   var y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
