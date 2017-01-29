@@ -200,11 +200,12 @@ function makeGraph(data, svg_id){
   var w = document.getElementById(id_without_hash).offsetWidth,
       h = 500,
       p = 35.5,
-      n = 100,
-      x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]),
-      y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
+      n = 100;
 
   w -= 2*p; //margins need to come out of width
+
+  var x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]);
+  var y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
 
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
