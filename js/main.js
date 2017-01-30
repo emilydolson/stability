@@ -51,25 +51,36 @@ function addCard(variable) {
 
   var card = d3.select("#card-area")
     .append("div")
-    .classed("mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+    .classed("click panel mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
 
-  card.append("div")
+  var front = card.append("div")
+                  .classed("front demo-updates mdl-card mdl-shadow--2dp mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+
+  front.append("div")
         .classed("mdl-card__title mdl-color--teal-300", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable.replace("-"," "));
 
-  card.append("div")
+  front.append("div")
       .classed("mdl-card__supporting-text mdl-color-text--grey-600", true)
       .append("div")
       .attr("id", variable+"-graph");
 
-  card.append("div")
+  front.append("div")
         .classed("mdl-card__actions mdl-card--border", true)
       .append("a")
         .attr("href", "#")
         .classed("mdl-button mdl-js-button mdl-js-ripple-effect", true)
         .text("Read More");
+
+  var back = card.append("div")
+                .classed("back demo-options mdl-card mdl-shadow--2dp mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+
+      back.append("div")
+          .classed("mdl-card__supporting-text mdl-color-text--blue-grey-50")
+          .append("h3")
+          .text("Settings");
 
   if (variable == "Sleep") {
     graphSleepData();
