@@ -77,9 +77,11 @@ function addCard(variable) {
   var back = card.append("div")
                 .classed("back demo-options mdl-card mdl-shadow--2dp mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
 
-      back.append("div")
-          .classed("mdl-card__supporting-text mdl-color-text--blue-grey-50")
-          .text("Settings");
+  var settings_div = back.append("div");
+
+  settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50", true);
+  settings_div.append("h3").text("Settings");
+
 
   if (variable == "Sleep") {
     graphSleepData();
