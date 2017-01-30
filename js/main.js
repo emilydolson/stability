@@ -79,7 +79,6 @@ function addCard(variable) {
 
       back.append("div")
           .classed("mdl-card__supporting-text mdl-color-text--blue-grey-50")
-          .append("h3")
           .text("Settings");
 
   if (variable == "Sleep") {
