@@ -6,6 +6,7 @@ var DAY = 86400000 //number of milliseconds in a day
 var weight_data;
 var all_activity_data;
 var id_token;
+var graphs = {};
 
 function ToggleFlipped(id) {
   d3.select(id).classed('flip', !d3.select(id).classed('flip'));
@@ -79,16 +80,31 @@ function addCard(variable) {
       .text("Settings");
 
   var back = card.append("div")
-                .classed("back mdl-card demo-options mdl-shadow--2dp  mdl-cell mdl-cell--12-col", true)
+                .classed("back mdl-card demo-options mdl-shadow--2dp mdl-color--deep-purple-500 mdl-cell mdl-cell--12-col", true)
 
   var settings_div = back.append("div");
 
   settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3").text("Settings");
-  // card.on("click", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
+
+  var settings_list = settings_div.append("ul");
+  var label = settings_list.append("li")
+               .append("label")
+                  .classed("mdl-switch mdl-js-switch mdl-js-ripple-effect", true)
+                  .attr("for", variable+"-y_axis-toggle");
+
+  label.append("input")
+       .classed("mdl-switch__input", true)
+       .attr("type", "checkbox")
+       .attr("id", variable+"-y_axis-toggle");
+
+
+  label.append("span")
+       .classed("mdl-switch__label", true)
+       .text("Y-axis labels");
 
   back.append("div")
-      .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
@@ -302,4 +318,6 @@ function makeGraph(data, svg_id, smoothing){
   vis.append("g")
       .attr("class", "left axis")
       .call(yAxis);
+
+  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":vis};
 }
