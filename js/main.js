@@ -51,6 +51,8 @@ function addCard(variable) {
 
   var card = d3.select("#card-area")
     .append("div")
+    .classed("mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+    .append("div")
     .classed("click panel mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true);
 
   var front = card.append("div")
