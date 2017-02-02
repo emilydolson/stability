@@ -29,7 +29,7 @@ function onSignIn(googleUser) {
   loadGapi();
   d3.selectAll(".click")
     .on("click", function(d, i, el){
-      d3.select(el[0]).classed("flip", !d3.select(el[0]).classed("flip"))});
+      d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
 }
 
 function onFailure(error) {
@@ -51,39 +51,39 @@ function addCard(variable) {
 
   var card = d3.select("#card-area")
     .append("div")
-    .classed("mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+      .classed("mdl-cell mdl-cell--12-col", true)
     .append("div")
-    .classed("click panel mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true);
+      .classed("click panel mdl-cell mdl-cell--12-col", true);
 
   var front = card.append("div")
-                  .classed("front mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+                  .classed("mdl-card front mdl-cell mdl-cell--12-col", true)
 
   front.append("div")
-        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true)
+        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text mdl-color-text--grey-600", true)
+      .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
       .attr("id", variable+"-graph");
 
   front.append("div")
-        .classed("mdl-card__actions mdl-card--border", true)
+        .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
       .append("a")
         .attr("href", "#")
         .classed("mdl-button mdl-js-button mdl-js-ripple-effect", true)
         .text("Read More");
 
   var back = card.append("div")
-                .classed("back demo-options mdl-card mdl-shadow--2dp mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+                .classed("back mdl-card demo-options mdl-shadow--2dp  mdl-cell mdl-cell--12-col", true)
 
   var settings_div = back.append("div");
 
-  settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50", true);
+  settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3").text("Settings");
-
+  card.on("click", classed("flip", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))}));
 
   if (variable == "Sleep") {
     graphSleepData();
