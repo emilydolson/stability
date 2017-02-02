@@ -88,10 +88,13 @@ function addCard(variable) {
   settings_div.append("h3").text("Settings");
 
   var settings_list = settings_div.append("ul");
+
+  /// Y axis switch
+
   var label = settings_list.append("li")
                .append("label")
-                  .classed("mdl-switch mdl-js-switch mdl-js-ripple-effect", true)
-                  .attr("for", variable+"-y_axis-toggle");
+                  .attr("for", variable+"-y_axis-toggle")
+                  .classed("mdl-switch mdl-js-switch mdl-js-ripple-effect", true);
 
   label.append("input")
        .classed("mdl-switch__input", true)
@@ -103,12 +106,66 @@ function addCard(variable) {
        .classed("mdl-switch__label", true)
        .text("Y-axis labels");
 
+  // Points switch
+
+  label = settings_list.append("li")
+               .append("label")
+               .attr("for", variable+"-plot-points-toggle")
+               .classed("mdl-switch mdl-js-switch mdl-js-ripple-effect", true);
+
+  label.append("input")
+       .classed("mdl-switch__input", true)
+       .attr("type", "checkbox")
+       .attr("id", variable+"-plot-points-toggle");
+
+
+  label.append("span")
+       .classed("mdl-switch__label", true)
+       .text("Plot points");
+
+  // Confidence interval switch
+
+  label = settings_list.append("li")
+              .append("label")
+              .attr("for", variable+"-plot-confint-toggle")
+              .classed("mdl-switch mdl-js-switch mdl-js-ripple-effect", true);
+
+  label.append("input")
+      .classed("mdl-switch__input", true)
+      .attr("type", "checkbox")
+      .attr("id", variable+"-plot-confint-toggle");
+
+
+  label.append("span")
+      .classed("mdl-switch__label", true)
+      .text("Plot confidence interval");
+
+  // Loess bandwidth slider
+
+  var list_el = settings_list.append("li");
+
+  list_el.append("input")
+         .attr("type", "range")
+         .attr("min", 0)
+         .attr("max", 10)
+         .attr("value", .8)
+         .classed("mdl-slider mdl-js-slider", true);
+
+  list_el.append("span")
+         .classed("mdl-switch__label", true)
+         .text("Smoothness");
+
+
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
       .text("Back");
+
+  if(!(typeof(componentHandler) == 'undefined')){
+        componentHandler.upgradeAllRegistered();
+    }
 
   if (variable == "Sleep") {
     graphSleepData();
@@ -118,6 +175,7 @@ function addCard(variable) {
     graphTotalActivityData();
   }
 }
+
 
 function getWeight() {
   // 2. Initialize the JavaScript client library.
@@ -256,7 +314,7 @@ function makeGraph(data, svg_id, smoothing){
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
   var w = document.getElementById(id_without_hash).offsetWidth,
-      h = 500,
+      h = w/2,
       p = 35.5,
       n = 100;
 
