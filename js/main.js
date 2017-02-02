@@ -83,7 +83,7 @@ function addCard(variable) {
 
   settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3").text("Settings");
-  card.on("click", classed("flip", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))}));
+  card.on("click", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
 
   if (variable == "Sleep") {
     graphSleepData();
