@@ -75,7 +75,6 @@ function addCard(variable) {
       .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
-      .append("button")
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
       .text("Settings");
 
@@ -92,7 +91,6 @@ function addCard(variable) {
       .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
-      .append("button")
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
       .text("Back");
 
