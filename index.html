@@ -166,7 +166,7 @@
           </div> -->
           <div id="card-area" class="demo-cards mdl-grid">
             <div class="mdl-cell mdl-cell--12-col">
-              <div class="click panel mdl-cell mdl-cell--12-col">
+              <div id="introcard" class="click panel mdl-cell mdl-cell--12-col">
                 <div class="mdl-card mdl-shadow--2dp front demo-updates mdl-cell mdl-cell--12-col">
                   <div class="mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col">
                     <h2 class="mdl-card__title-text">Welcome to Stability!</h2>
@@ -177,20 +177,35 @@
                     To get started, use the + button to add some graphs.
                   </div>
                   <div class="mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col">
-                    <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+                    <button OnClick="ToggleFlipped('#introcard');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Read More</button>
                   </div>
                 </div>
-                <div class="back mdl-shadow--2dp mdl-card demo-updates mdl-shadow--2dp  mdl-cell mdl-cell--12-col">
-                  <div class="mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col">
+                <div class="back mdl-shadow--2dp mdl-color--deep-purple-500 mdl-card demo-options mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+                  <!-- <div class="mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col">
                     <h2 class="mdl-card__title-text">Flipped!!</h2>
+                  </div> -->
+                  <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+                    <h3>Options</h3>
+                    <ul>
+                      <li>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-5">
+                          <input type="checkbox" id="switch-5" class="mdl-switch__input">
+                          <span class="mdl-switch__label"> Y-axis labels</span>
+                        </label>
+                      </li>
+                      <li>
+
+                      </li>
+                      <li>
+
+                      </li>
+                      <li>
+
+                      </li>
+                    </ul>
                   </div>
-                  <div class="mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col">
-                    Take control of how you visualize your fitness data.
-                    <br><br>
-                    To get started, use the + button to add some graphs.
-                  </div>
-                  <div class="mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col">
-                    <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+                  <div class="mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col">
+                    <button OnClick="ToggleFlipped('#introcard');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Read More</button>
                   </div>
                 </div>
               </div>
@@ -257,6 +272,10 @@
 
 
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
+    <!-- <script>
+    d3.selectAll(".click")
+      .on("click", function(d, i, el){
+        d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
+    </script> -->
   </body>
 </html>

@@ -7,6 +7,10 @@ var weight_data;
 var all_activity_data;
 var id_token;
 
+function ToggleFlipped(id) {
+  d3.select(id).classed('flip', !d3.select(id).classed('flip'));
+}
+
 function onSignIn(googleUser) {
   d3.select("#sign-in-button").classed("visuallyhidden", true);
   var profile = googleUser.getBasicProfile();
@@ -27,9 +31,6 @@ function onSignIn(googleUser) {
       .text("Sign out");
 
   loadGapi();
-  d3.selectAll(".click")
-    .on("click", function(d, i, el){
-      d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
 }
 
 function onFailure(error) {
@@ -53,6 +54,7 @@ function addCard(variable) {
     .append("div")
       .classed("mdl-cell mdl-cell--12-col", true)
     .append("div")
+      .attr("id", variable+"-card")
       .classed("click panel mdl-cell mdl-cell--12-col", true);
 
   var front = card.append("div")
@@ -70,11 +72,12 @@ function addCard(variable) {
       .attr("id", variable+"-graph");
 
   front.append("div")
-        .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
-      .append("a")
-        .attr("href", "#")
-        .classed("mdl-button mdl-js-button mdl-js-ripple-effect", true)
-        .text("Read More");
+      .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
+      .append("button")
+      .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
+      .append("button")
+      .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
+      .text("Settings");
 
   var back = card.append("div")
                 .classed("back mdl-card demo-options mdl-shadow--2dp  mdl-cell mdl-cell--12-col", true)
@@ -83,7 +86,15 @@ function addCard(variable) {
 
   settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3").text("Settings");
-  card.on("click", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
+  // card.on("click", function(d,i,el){d3.select(this).classed("flip", !d3.select(this).classed("flip"))});
+
+  back.append("div")
+      .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col", true)
+      .append("button")
+      .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
+      .append("button")
+      .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
+      .text("Back");
 
   if (variable == "Sleep") {
     graphSleepData();
