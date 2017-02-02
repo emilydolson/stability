@@ -53,13 +53,13 @@ function addCard(variable) {
     .append("div")
     .classed("click panel mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
     .append("div")
-    .classed("mdl-cell demo-updates mdl-card  mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+    .classed("mdl-cell mdl-card mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
 
   var front = card.append("div")
-                  .classed("front demo-updates mdl-card mdl-shadow--2dp mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
+                  .classed("front mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop", true)
 
   front.append("div")
-        .classed("mdl-card__title mdl-color--teal-300", true)
+        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable.replace("-"," "));
