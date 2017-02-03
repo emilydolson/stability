@@ -157,7 +157,7 @@ function addCard(variable) {
          .attr("step", .01)
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
-         .attr("oninput", "updateSmoothness("+variable+");") //should really by onchange, but that doesn't work for some reason
+         .attr("oninput", "updateSmoothness('"+variable+"');") //should really by onchange, but that doesn't work for some reason
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
