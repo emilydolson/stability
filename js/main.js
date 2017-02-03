@@ -365,7 +365,6 @@ function makeGraph(data, svg_id, options){
       p = 35.5,
       n = 100;
 
-  console.log(w);
   w -= 2*p; //margins need to come out of width
 
   var min_band = 2/data.length;
@@ -373,9 +372,9 @@ function makeGraph(data, svg_id, options){
   var loess = science.stats.loess().bandwidth(d3.max([min_band, options.smoothing]));
 
   var zipped_data = d3.transpose(data);
-  var original_data = data;
   var loess_result = loess(zipped_data[0], zipped_data[1]);
 
+  var original_data = d3.zip(data[0], data[1]);
   zipped_data[1] = loess_result.loess;
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
