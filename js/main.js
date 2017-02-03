@@ -133,6 +133,7 @@ function addCard(variable) {
   label.append("input")
       .classed("mdl-switch__input", true)
       .attr("type", "checkbox")
+      .attr("OnClick", "ToggleConfInt("+variable+");")
       .attr("id", variable+"-plot-confint-toggle");
 
 
@@ -149,6 +150,7 @@ function addCard(variable) {
          .attr("min", 0)
          .attr("max", 10)
          .attr("value", .8)
+         .attr("id", variable+"-smoothness-slider")
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
@@ -167,8 +169,16 @@ function addCard(variable) {
         componentHandler.upgradeAllRegistered();
     }
 
-  options = {"smoothing":.3, "y_axis_ticks":false, "confint":false, "points":true};
+  options = {"smoothing":d3.select("#"+variable+"-smoothness-slider").attr("value"),
+             "y_axis_ticks":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
+             "confint":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
+             "points":d3.select("#"+variable+"-y_axis-toggle").property("checked")
+           };
 
+  callMakeGraph(variable, options);
+}
+
+callMakeGraph(variable, options){
   if (variable == "Sleep") {
     graphSleepData(options);
   } else if (variable == "Weight") {
@@ -178,6 +188,12 @@ function addCard(variable) {
   }
 }
 
+function ToggleConfInt(variable) {
+  var g = graphs[variable+"-graph"];
+  g.options.confint = !g.options.confint;
+  vis.remove();
+  callMakeGraph(variable, options);
+}
 
 function getWeight() {
   // 2. Initialize the JavaScript client library.
@@ -395,5 +411,5 @@ function makeGraph(data, svg_id, options){
       .attr("class", "left axis")
       .call(yAxis);
 
-  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":vis};
+  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":vis, "options":options};
 }
