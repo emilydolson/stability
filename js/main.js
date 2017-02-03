@@ -155,7 +155,7 @@ function addCard(variable) {
          .attr("max", 2)
          .attr("tabindex", 0)
          .attr("step", .01)
-         .attr("value", .8)
+         .attr("defaultValue", .8)
          .attr("id", variable+"-smoothness-slider")
          .classed("mdl-slider mdl-js-slider", true);
 
