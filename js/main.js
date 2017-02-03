@@ -155,7 +155,7 @@ function addCard(variable) {
          .attr("max", 2)
          .attr("tabindex", 0)
          .attr("step", .01)
-         //.attr("value", .8)
+         .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
          .attr("oninput", "updateSmoothness('"+variable+"');") //should really by onchange, but that doesn't work for some reason
          .classed("mdl-slider mdl-js-slider", true);
@@ -173,6 +173,7 @@ function addCard(variable) {
 
   if(!(typeof(componentHandler) == 'undefined')){
         componentHandler.upgradeAllRegistered();
+        componentHandler.upgradeDom();
     }
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
