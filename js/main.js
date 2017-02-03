@@ -424,7 +424,7 @@ function makeGraph(data, svg_id, options){
        .enter()
        .append("circle")
        .attr("r", 5)
-       .attr("cx", function(d){console.log(d[0]); return x(d[0]);})
+       .attr("cx", function(d){console.log(x(d[0])); console.log(d[0]); return x(d[0]);})
        .attr("cy", function(d){return y(d[1]);});
   }
 
