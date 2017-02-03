@@ -167,7 +167,7 @@ function addCard(variable) {
         componentHandler.upgradeAllRegistered();
     }
 
-  options = {"smoothing":.3, "y_axis_ticks":true, "confint":true, "points":true};
+  options = {"smoothing":.3, "y_axis_ticks":false, "confint":false, "points":true};
 
   if (variable == "Sleep") {
     graphSleepData(options);
