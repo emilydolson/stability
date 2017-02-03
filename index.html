@@ -44,6 +44,9 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
+    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
+    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
@@ -154,7 +157,18 @@
                         </label>
                       </li>
                       <li>
-
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                          <input class="mdl-textfield__input" id="time-interval" name="Time interval" value="Day" type="text" readonly tabIndex="-1" data-val="day"/>
+                          <label for="time-interval">
+                               <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                           </label>
+                            <label class="mdl-textfield__label" for="time-interval">Time Interval</label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="time-interval">
+                              <li class="mdl-menu__item" data-val="day">Day</li>
+                              <li class="mdl-menu__item" data-val="week">Week</li>
+                              <li class="mdl-menu__item" data-val="month">Month</li>
+                            </ul>
+                        </div>
                       </li>
                       <li>
 
@@ -163,6 +177,12 @@
 
                       </li>
                     </ul>
+                    <div class="mdl-layout-spacer"><br></div>
+                    <div class="mdl-layout-spacer"><br></div>
+                    <div class="mdl-layout-spacer"><br></div>
+                    <div class="mdl-layout-spacer"><br></div>
+                    <div class="mdl-layout-spacer"><br></div>
+                    <div class="mdl-layout-spacer"><br></div>
                   </div>
                   <div class="mdl-card__actions mdl-card--border  mdl-cell mdl-cell--12-col">
                     <button OnClick="ToggleFlipped('#introcard');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Read More</button>

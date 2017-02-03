@@ -167,12 +167,14 @@ function addCard(variable) {
         componentHandler.upgradeAllRegistered();
     }
 
+  options = {"smoothing":.3, "y_axis_ticks":true, "confint":true, "points":true};
+
   if (variable == "Sleep") {
-    graphSleepData();
+    graphSleepData(options);
   } else if (variable == "Weight") {
-    makeGraph(weight_data, "#Weight-graph", .8);
+    makeGraph(weight_data, "#Weight-graph", options);
   } else if (variable == "Active-time") {
-    graphTotalActivityData();
+    graphTotalActivityData(options);
   }
 }
 
@@ -249,7 +251,7 @@ function getActivity(){
   });
 }
 
-function graphSleepData(){
+function graphSleepData(options){
   sleep_data = [];
   for (i in all_activity_data) {
     if (all_activity_data[i].dataset[0].point.length > 0) {
@@ -261,10 +263,10 @@ function graphSleepData(){
       }
     }
   }
-  makeGraph(sleep_data, "#Sleep-graph", .5);
+  makeGraph(sleep_data, "#Sleep-graph", options);
 }
 
-function graphTotalActivityData(){
+function graphTotalActivityData(options){
   data = [];
   for (i in all_activity_data) {
     if (all_activity_data[i].dataset[0].point.length > 0) {
@@ -276,8 +278,7 @@ function graphTotalActivityData(){
       }
     }
   }
-
-  makeGraph(data, "#Active-time-graph", .5);
+  makeGraph(data, "#Active-time-graph", options);
 }
 
 
@@ -307,7 +308,7 @@ function toggleLabelYAxis() {
   // xmlHttp.send({"user":id_token, "value":true});
 }
 
-function makeGraph(data, svg_id, smoothing){
+function makeGraph(data, svg_id, options){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
 
@@ -323,7 +324,7 @@ function makeGraph(data, svg_id, smoothing){
 
   var min_band = 2/data.length;
 
-  var loess = science.stats.loess().bandwidth(d3.max([min_band, smoothing]));
+  var loess = science.stats.loess().bandwidth(d3.max([min_band, options.smoothing]));
 
   var zipped_data = d3.transpose(data);
   var loess_result = loess(zipped_data[0], zipped_data[1]);
@@ -360,18 +361,34 @@ function makeGraph(data, svg_id, smoothing){
         .y1(function(d) { return d[2] ? y(d[1]+d[2]) : y(d[1]);});
 
 
-  vis.selectAll("path")
-      .data([data])
-    .enter().append("path")
-      .attr("d", function(d){return area(d);})
-      .attr("stroke", "black")
-      .attr("fill", "purple")
-      .attr("stroke-width", 1);
+  if (options.confint){
+    vis.selectAll("path")
+        .data([data])
+      .enter().append("path")
+        .attr("d", function(d){return area(d);})
+        .attr("stroke", "black")
+        .attr("fill", "purple")
+        .attr("stroke-width", 1);
+  }
+
+  if (options.points){
+    vis.selectAll("circle")
+       .data(data)
+       .enter()
+       .append("circle")
+       .attr("r", 5)
+       .attr("cx", function(d){return x(d[0]);})
+       .attr("cy", function(d){return y(d[1]);});
+  }
 
   vis.append("g")
       .attr("class", "bottom axis")
       .attr("transform", "translate(0," + h + ")")
       .call(xAxis);
+
+  if (!options.y_axis_ticks) {
+    yAxis.ticks(0);
+  }
 
   vis.append("g")
       .attr("class", "left axis")

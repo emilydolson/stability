@@ -300,7 +300,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .click .front {
-  cursor: pointer;
   -webkit-transform: rotateY(0);
           transform: rotateY(0);
 }
@@ -309,7 +308,6 @@ _:-ms-input-placeholder, :root .demo-graph {
           transform: rotateY(180deg);
 }
 .click .back {
-  cursor: pointer;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
