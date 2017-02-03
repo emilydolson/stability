@@ -365,11 +365,11 @@ function makeGraph(data, svg_id, options){
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
 
-  var vis = d3.select(svg_id)
+  var svg = d3.select(svg_id)
     .append("svg")
       .attr("width", w + p + p)
-      .attr("height", h + p + p)
-    .append("g")
+      .attr("height", h + p + p);
+  var vis =  svg.append("g")
       .attr("transform", "translate(" + p + "," + p + ")");
 
   var area = d3.area()
@@ -411,5 +411,5 @@ function makeGraph(data, svg_id, options){
       .attr("class", "left axis")
       .call(yAxis);
 
-  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":d3.select(svg_id), "options":options};
+  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":svg, "options":options};
 }
