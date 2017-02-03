@@ -411,5 +411,5 @@ function makeGraph(data, svg_id, options){
       .attr("class", "left axis")
       .call(yAxis);
 
-  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":vis, "options":options};
+  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":d3.select(svg_id), "options":options};
 }
