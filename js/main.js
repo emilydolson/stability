@@ -157,7 +157,7 @@ function addCard(variable) {
          .attr("step", .01)
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
-         .attr("onchange", "console.log('changed');")//"updateSmoothness("+variable+");")
+         .attr("oninput", "console.log('changed');")//"updateSmoothness("+variable+");")
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
