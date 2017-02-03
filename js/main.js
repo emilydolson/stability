@@ -155,9 +155,9 @@ function addCard(variable) {
          .attr("max", 2)
          .attr("tabindex", 0)
          .attr("step", .01)
-         .attr("defaultValue", .8)
+         .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
-         .attr("onChange", "updateSmoothness("+variable+");")
+         .attr("onChange", "console.log('changed');")//"updateSmoothness("+variable+");")
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
