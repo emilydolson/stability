@@ -327,8 +327,9 @@ function makeGraph(data, svg_id, options){
   var loess = science.stats.loess().bandwidth(d3.max([min_band, options.smoothing]));
 
   var zipped_data = d3.transpose(data);
+  var original_data = zipped_data;
   var loess_result = loess(zipped_data[0], zipped_data[1]);
-  console.log("loess", loess_result);
+
   zipped_data[1] = loess_result.loess;
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
@@ -373,7 +374,7 @@ function makeGraph(data, svg_id, options){
 
   if (options.points){
     vis.selectAll("circle")
-       .data(data)
+       .data(original_data)
        .enter()
        .append("circle")
        .attr("r", 5)
