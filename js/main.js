@@ -178,7 +178,7 @@ function addCard(variable) {
   callMakeGraph(variable, options);
 }
 
-callMakeGraph(variable, options){
+function callMakeGraph(variable, options){
   if (variable == "Sleep") {
     graphSleepData(options);
   } else if (variable == "Weight") {
