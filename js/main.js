@@ -200,21 +200,21 @@ function toggleConfInt(variable) {
   var g = graphs[variable+"-graph"];
   g.options.confint = !g.options.confint;
   g.vis.remove();
-  callMakeGraph(variable, options);
+  callMakeGraph(variable, g.options);
 }
 
 function togglePoints(variable) {
   var g = graphs[variable+"-graph"];
   g.options.points = !g.options.points;
   g.vis.remove();
-  callMakeGraph(variable, options);
+  callMakeGraph(variable, g.options);
 }
 
 function toggleYAxis(variable) {
   var g = graphs[variable+"-graph"];
   g.options.y_axis_ticks = !g.options.y_axis_ticks;
   g.vis.remove();
-  callMakeGraph(variable, options);
+  callMakeGraph(variable, g.options);
 }
 
 function updateSmoothness(variable) {
@@ -223,7 +223,7 @@ function updateSmoothness(variable) {
   g.options.smoothing = d3.select("#"+variable+"-smoothness-slider").attr("value");
   console.log(g.options.smoothing);
   g.vis.remove();
-  callMakeGraph(variable, options);
+  callMakeGraph(variable, g.options);
 }
 
 function getWeight() {
