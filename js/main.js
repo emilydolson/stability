@@ -218,6 +218,7 @@ function toggleYAxis(variable) {
 }
 
 function updateSmoothness(variable) {
+  console.log("update smoothness");
   var g = graphs[variable+"-graph"];
   g.options.smoothness = d3.select("#"+variable+"-smoothness-slider").attr("value");
   console.log(g.options.smoothness);
