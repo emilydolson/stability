@@ -365,8 +365,8 @@ function makeGraph(data, svg_id, options){
       p = 35.5,
       n = 100;
 
+  console.log(w);
   w -= 2*p; //margins need to come out of width
-
 
   var min_band = 2/data.length;
 
