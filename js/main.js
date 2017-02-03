@@ -133,9 +133,9 @@ function addCard(variable) {
   label.append("input")
       .classed("mdl-switch__input", true)
       .attr("type", "checkbox")
-      .attr("OnClick", "ToggleConfInt("+variable+");")
       .attr("id", variable+"-plot-confint-toggle");
 
+  $("#"+variable+"-plot-confint-toggle").on("change", function(){ToggleConfInt(variable);});
 
   label.append("span")
       .classed("mdl-switch__label", true)
