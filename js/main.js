@@ -360,7 +360,7 @@ function makeGraph(data, svg_id, options){
 
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
-  var w = document.getElementById(id_without_hash).width,
+  var w = document.getElementById(id_without_hash).style.width,
       h = w/2,
       p = 35.5,
       n = 100;
