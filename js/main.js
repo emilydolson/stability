@@ -175,7 +175,7 @@ function addCard(variable) {
         componentHandler.upgradeAllRegistered();
     }
 
-  $("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
+  //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   options = {"smoothing":d3.select("#"+variable+"-smoothness-slider").attr("value"),
              "y_axis_ticks":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
@@ -220,8 +220,8 @@ function toggleYAxis(variable) {
 function updateSmoothness(variable) {
   console.log("update smoothness");
   var g = graphs[variable+"-graph"];
-  g.options.smoothness = d3.select("#"+variable+"-smoothness-slider").attr("value");
-  console.log(g.options.smoothness);
+  g.options.smoothing = d3.select("#"+variable+"-smoothness-slider").attr("value");
+  console.log(g.options.smoothing);
   g.vis.remove();
   callMakeGraph(variable, options);
 }
