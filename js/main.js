@@ -158,7 +158,7 @@ function addCard(variable) {
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
          .attr("oninput", "updateSmoothness('"+variable+"');") //should really by onchange, but that doesn't work for some reason
-         .classed("mdl-slider mdl-js-slider", true);
+         .classed("mdl-slider mdl-js-slider", false);
 
   list_el.append("span")
          .classed("mdl-switch__label", true)
@@ -173,7 +173,6 @@ function addCard(variable) {
 
   if(!(typeof(componentHandler) == 'undefined')){
         componentHandler.upgradeAllRegistered();
-        componentHandler.upgradeDom();
     }
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
