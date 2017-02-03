@@ -161,6 +161,7 @@ function addCard(variable) {
          .classed("mdl-switch__label", true)
          .text("Smoothness");
 
+  $("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
@@ -209,6 +210,13 @@ function togglePoints(variable) {
 function toggleYAxis(variable) {
   var g = graphs[variable+"-graph"];
   g.options.y_axis_ticks = !g.options.y_axis_ticks;
+  g.vis.remove();
+  callMakeGraph(variable, options);
+}
+
+function updateSmoothness(variable) {
+  var g = graphs[variable+"-graph"];
+  g.options.smoothness = d3.select("#"+variable+"-smoothness-slider").attr("value");
   g.vis.remove();
   callMakeGraph(variable, options);
 }
