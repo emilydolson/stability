@@ -158,7 +158,7 @@ function addCard(variable) {
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
          .attr("oninput", "updateSmoothness('"+variable+"');") //should really by onchange, but that doesn't work for some reason
-         .classed("mdl-slider mdl-js-slider", false);
+         .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
          .classed("mdl-switch__label", true)
@@ -220,7 +220,7 @@ function toggleYAxis(variable) {
 function updateSmoothness(variable) {
   console.log("update smoothness");
   var g = graphs[variable+"-graph"];
-  g.options.smoothing = d3.select("#"+variable+"-smoothness-slider").attr("value");
+  g.options.smoothing = document.getElementById(variable+"-smoothness-slider").value;
   console.log(g.options.smoothing);
   g.vis.remove();
   callMakeGraph(variable, g.options);
