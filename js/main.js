@@ -372,9 +372,9 @@ function makeGraph(data, svg_id, options){
   var loess = science.stats.loess().bandwidth(d3.max([min_band, options.smoothing]));
 
   var zipped_data = d3.transpose(data);
+  var original_data = data;
   var loess_result = loess(zipped_data[0], zipped_data[1]);
 
-  var original_data = d3.zip(zipped_data[0], data[1]);
   zipped_data[1] = loess_result.loess;
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
@@ -388,7 +388,7 @@ function makeGraph(data, svg_id, options){
     min_y -= min_y*.2;
   }
 
-  var x = d3.scaleTime().domain([new Date(data[0][0]-86400000), new Date(data[data.length-1][0]+86400000)]).range([0, w]);
+  var x = d3.scaleTime().domain([new Date(data[0][0]), new Date(data[data.length-1][0])]).range([0, w]);
   var y = d3.scaleLinear().domain([min_y, max_y]).range([h, 0]);
 
   var xAxis = d3.axisBottom(x),
