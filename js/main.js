@@ -374,7 +374,7 @@ function makeGraph(data, svg_id, options){
   var zipped_data = d3.transpose(data);
   var loess_result = loess(zipped_data[0], zipped_data[1]);
 
-  var original_data = d3.zip(data[0], data[1]);
+  var original_data = d3.zip(zipped_data[0], data[1]);
   zipped_data[1] = loess_result.loess;
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2]);
