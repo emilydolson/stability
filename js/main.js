@@ -191,7 +191,7 @@ function callMakeGraph(variable, options){
 function ToggleConfInt(variable) {
   var g = graphs[variable+"-graph"];
   g.options.confint = !g.options.confint;
-  vis.remove();
+  g.vis.remove();
   callMakeGraph(variable, options);
 }
 
