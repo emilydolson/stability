@@ -360,7 +360,7 @@ function makeGraph(data, svg_id, options){
 
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
-  var w = document.getElementById(id_without_hash).getBoundingClientRect().width,
+  var w = document.getElementById(id_without_hash).offsetWidth,
       h = w/2,
       p = 35.5,
       n = 100;
@@ -423,7 +423,7 @@ function makeGraph(data, svg_id, options){
        .enter()
        .append("circle")
        .attr("r", 5)
-       .attr("cx", function(d){console.log(x(d[0])); console.log(d[0]); return x(d[0]);})
+       .attr("cx", function(d){return x(d[0]);})
        .attr("cy", function(d){return y(d[1]);});
   }
 
