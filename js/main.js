@@ -106,6 +106,8 @@ function addCard(variable) {
        .classed("mdl-switch__label", true)
        .text("Y-axis labels");
 
+  $("#"+variable+"-y_axis-toggle").on("change", function(){toggleYAxis(variable);});
+
   // Points switch
 
   label = settings_list.append("li")
@@ -123,6 +125,8 @@ function addCard(variable) {
        .classed("mdl-switch__label", true)
        .text("Plot points");
 
+  $("#"+variable+"-plot-points-toggle").on("change", function(){togglePoints(variable);});
+
   // Confidence interval switch
 
   label = settings_list.append("li")
@@ -135,7 +139,7 @@ function addCard(variable) {
       .attr("type", "checkbox")
       .attr("id", variable+"-plot-confint-toggle");
 
-  $("#"+variable+"-plot-confint-toggle").on("change", function(){ToggleConfInt(variable);});
+  $("#"+variable+"-plot-confint-toggle").on("change", function(){toggleConfInt(variable);});
 
   label.append("span")
       .classed("mdl-switch__label", true)
@@ -188,9 +192,23 @@ function callMakeGraph(variable, options){
   }
 }
 
-function ToggleConfInt(variable) {
+function toggleConfInt(variable) {
   var g = graphs[variable+"-graph"];
   g.options.confint = !g.options.confint;
+  g.vis.remove();
+  callMakeGraph(variable, options);
+}
+
+function togglePoints(variable) {
+  var g = graphs[variable+"-graph"];
+  g.options.points = !g.options.points;
+  g.vis.remove();
+  callMakeGraph(variable, options);
+}
+
+function toggleYAxis(variable) {
+  var g = graphs[variable+"-graph"];
+  g.options.y_axis_ticks = !g.options.y_axis_ticks;
   g.vis.remove();
   callMakeGraph(variable, options);
 }
