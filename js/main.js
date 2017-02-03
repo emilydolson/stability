@@ -157,13 +157,14 @@ function addCard(variable) {
          .attr("step", .01)
          .attr("defaultValue", .8)
          .attr("id", variable+"-smoothness-slider")
+         .attr("onChange", "updateSmoothness("+variable+");")
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
          .classed("mdl-switch__label", true)
          .text("Smoothness");
 
-  $("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
+  //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
