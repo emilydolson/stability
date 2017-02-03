@@ -152,7 +152,9 @@ function addCard(variable) {
   list_el.append("input")
          .attr("type", "range")
          .attr("min", 0)
-         .attr("max", 10)
+         .attr("max", 2)
+         .attr("tabindex", 0)
+         .attr("step", .01)
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
          .classed("mdl-slider mdl-js-slider", true);
@@ -217,6 +219,7 @@ function toggleYAxis(variable) {
 function updateSmoothness(variable) {
   var g = graphs[variable+"-graph"];
   g.options.smoothness = d3.select("#"+variable+"-smoothness-slider").attr("value");
+  console.log(g.options.smoothness);
   g.vis.remove();
   callMakeGraph(variable, options);
 }
