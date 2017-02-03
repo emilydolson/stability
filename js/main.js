@@ -157,14 +157,12 @@ function addCard(variable) {
          .attr("step", .01)
          .attr("value", .8)
          .attr("id", variable+"-smoothness-slider")
-         .attr("oninput", "updateSmoothness("+variable+");") //should really by onchange, but that doesn't work for some reason
+        //  .attr("oninput", "updateSmoothness("+variable+");") //should really by onchange, but that doesn't work for some reason
          .classed("mdl-slider mdl-js-slider", true);
 
   list_el.append("span")
          .classed("mdl-switch__label", true)
          .text("Smoothness");
-
-  //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
@@ -176,6 +174,8 @@ function addCard(variable) {
   if(!(typeof(componentHandler) == 'undefined')){
         componentHandler.upgradeAllRegistered();
     }
+
+  $("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   options = {"smoothing":d3.select("#"+variable+"-smoothness-slider").attr("value"),
              "y_axis_ticks":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
