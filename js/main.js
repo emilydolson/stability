@@ -327,7 +327,7 @@ function makeGraph(data, svg_id, options){
   var loess = science.stats.loess().bandwidth(d3.max([min_band, options.smoothing]));
 
   var zipped_data = d3.transpose(data);
-  var original_data = zipped_data;
+  var original_data = data;
   var loess_result = loess(zipped_data[0], zipped_data[1]);
 
   zipped_data[1] = loess_result.loess;
