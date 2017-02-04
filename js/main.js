@@ -99,6 +99,7 @@ function addCard(variable) {
   label.append("input")
        .classed("mdl-switch__input", true)
        .attr("type", "checkbox")
+       .property("checked", variable != "Weight")
        .attr("id", variable+"-y_axis-toggle");
 
 
@@ -137,6 +138,7 @@ function addCard(variable) {
   label.append("input")
       .classed("mdl-switch__input", true)
       .attr("type", "checkbox")
+      .property("checked", true)
       .attr("id", variable+"-plot-confint-toggle");
 
   $("#"+variable+"-plot-confint-toggle").on("change", function(){toggleConfInt(variable);});
