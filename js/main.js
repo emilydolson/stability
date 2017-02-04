@@ -182,7 +182,7 @@ function addCard(variable) {
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
   options = {"smoothing":document.getElementById(variable+"-smoothness-slider").value,
-             "y_axis_ticks":document.getElementById(variable+"-plot-y_axis-toggle").checked,
+             "y_axis_ticks":document.getElementById(variable+"-y_axis-toggle").checked,
              "confint":document.getElementById(variable+"-plot-confint-toggle").checked,
              "points":document.getElementById(variable+"-plot-points-toggle").checked
            };
