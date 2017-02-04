@@ -99,9 +99,11 @@ function addCard(variable) {
   label.append("input")
        .classed("mdl-switch__input", true)
        .attr("type", "checkbox")
-       .property("checked", variable != "Weight")
        .attr("id", variable+"-y_axis-toggle");
 
+  if (variable != Weight) {
+    d3.select("#"+variable+"-y_axis-toggle").property("checked", true);
+  }
 
   label.append("span")
        .classed("mdl-switch__label", true)
