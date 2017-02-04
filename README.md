@@ -5,18 +5,19 @@ A non-judgmental fitness app that doesn't make assumptions about your health nee
 ## Current features:
 
 - Log-in with Google
-- Pull your weight data from Google fit and graph the trend
+- Pull your data from Google fit and graph trends
+- Change settings on graphs
 
 ## Todo:
 
-- All other data types
-- Format website (probably split into multiple pages)
+- Graph individual activities
+- Have landing page
 - Write explanatory text
-- Add more options for what to show (numbers on graph)
+- Add more options for what time unit to aggregate data by
 
 ## Note:
 
 This is a major work in progress - I add a feature every time I get angry enough at all of the apps that currently exist. I make no promises of it being done any time soon (unless someone wants to help...).
 
 
-Built with [bootstrap](http://getbootstrap.com/), [d3.js](https://d3js.org/), and [science.js](https://github.com/jasondavies/science.js). 
+Built with [material design lite](https://getmdl.io), [d3.js](https://d3js.org/), and [science.js](https://github.com/jasondavies/science.js). 
