@@ -102,7 +102,7 @@ function addCard(variable) {
        .attr("id", variable+"-y_axis-toggle");
 
   if (variable != "Weight") {
-    d3.select("#"+variable+"-y_axis-toggle").property("checked", true);
+    document.getElementById(variable+"-y_axis-toggle").checked = true;
   }
 
   label.append("span")
