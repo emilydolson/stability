@@ -179,10 +179,9 @@ function addCard(variable) {
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
-  options = {"smoothing":d3.select("#"+variable+"-smoothness-slider").attr("value"),
-             "y_axis_ticks":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
-             "confint":d3.select("#"+variable+"-plot-confint-toggle").property("checked"),
-             "points":d3.select("#"+variable+"-y_axis-toggle").property("checked")
+  options = {"smoothing":document.getElementById(variable+"-smoothness-slider").value,
+             "y_axis_ticks":document.getElementById(variable+"-plot-confint-toggle").checked,
+             "confint":document.getElementById(variable+"-plot-confint-toggle").checked,
            };
 
   callMakeGraph(variable, options);
