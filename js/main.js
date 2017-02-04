@@ -101,7 +101,7 @@ function addCard(variable) {
        .attr("type", "checkbox")
        .attr("id", variable+"-y_axis-toggle");
 
-  if (variable != Weight) {
+  if (variable != "Weight") {
     d3.select("#"+variable+"-y_axis-toggle").property("checked", true);
   }
 
