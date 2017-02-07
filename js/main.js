@@ -378,7 +378,7 @@ function updatePreferences() {
       type:"POST",
       contentType:"application/json",
       data:JSON.stringify({"user":id_token, "value":JSON.stringify(graphs)}),
-      success:function() {alert("success");},
+      success:function() {console.log("success");},
       error: function() {alert("failure");}
   });
 
