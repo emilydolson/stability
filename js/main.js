@@ -153,10 +153,16 @@ function addCard(variable) {
 
   var list_el = settings_list.append("li");
 
+  makeTimePeriodRadioButton(list_el, variable, "day");
+  makeTimePeriodRadioButton(list_el, variable, "week");
+  makeTimePeriodRadioButton(list_el, variable, "month");
+
+  list_el = settings_list.append("li");
+
   list_el.append("input")
          .attr("type", "range")
          .attr("min", 0)
-         .attr("max", 2)
+         .attr("max", 1)
          .attr("tabindex", 0)
          .attr("step", .01)
          .attr("value", .8)
@@ -188,6 +194,24 @@ function addCard(variable) {
            };
 
   callMakeGraph(variable, options);
+}
+
+function makeTimePeriodRadioButton(list_el, variable, unit) {
+  var label = list_el.append("label");
+
+  label.classed("mdl-radio mdl-js-radio mdl-js-ripple-effect")
+       .attr("for", variable + "-time-unit-"+unit)
+     .append("input")
+       .property("checked", true)
+       .classed("mdl-radio__button", true)
+       .attr("id", variable + "-time-unit-"+unit)
+       .attr("type", "radio")
+       .attr("name", variable+"-time-unit")
+       .attr("value", unit);
+
+  label.append("span")
+       .classed("mdl-radio__label")
+       .text(unit[0].toUpperCase() + unit.slice(1) + "&nbsp&nbsp");
 }
 
 function callMakeGraph(variable, options){
