@@ -199,7 +199,7 @@ function addCard(variable) {
 function makeTimePeriodRadioButton(list_el, variable, unit) {
   var label = list_el.append("label");
 
-  label.classed("mdl-radio mdl-js-radio mdl-js-ripple-effect")
+  label.classed("mdl-radio mdl-js-radio mdl-js-ripple-effect", true)
        .attr("for", variable + "-time-unit-"+unit)
      .append("input")
        .property("checked", true)
