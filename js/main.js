@@ -70,7 +70,7 @@ function addCard(variable) {
   front.append("div")
       .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
-       .attr("id", variable+"-graph-container");
+      .attr("id", variable+"-graph-container")
       .append("svg")
       .attr("width", document.getElementById(variable+"-graph-container").offsetWidth)
       .attr("height", document.getElementById(variable+"-graph-container").offsetWidth/2+71)
