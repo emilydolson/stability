@@ -176,6 +176,7 @@ function addCard(variable) {
 
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
+      .attr("height", document.getElementById(variable+"-graph").offsetWidth/2)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
