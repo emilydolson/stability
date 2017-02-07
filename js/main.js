@@ -210,7 +210,7 @@ function makeTimePeriodRadioButton(list_el, variable, unit) {
        .attr("value", unit);
 
   label.append("span")
-       .classed("mdl-radio__label")
+       .classed("mdl-radio__label", true)
        .text(unit[0].toUpperCase() + unit.slice(1) + "&nbsp&nbsp");
 }
 
