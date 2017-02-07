@@ -239,6 +239,18 @@ _:-ms-input-placeholder, :root .demo-graph {
           align-items: center;
 }
 
+.mdl-card__title {
+  width: 100%;
+}
+
+.mdl-card__supporting-text {
+  width: 100%;
+}
+
+.mdl-card__actions {
+  width: 100%;
+}
+
 .panel {
   float: left;
   width:100%;
