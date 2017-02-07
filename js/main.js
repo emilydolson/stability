@@ -86,7 +86,7 @@ function addCard(variable) {
 
   settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3")
-              .text("Settings");
+              .text("Settings")
               .attr("height", document.getElementById(variable+"-graph").offsetWidth/2);
 
   var settings_list = settings_div.append("ul");
