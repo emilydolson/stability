@@ -414,8 +414,8 @@ function makeGraph(data, svg_id, options){
   zipped_data.push(loess_result.confint);
   data = d3.zip(zipped_data[0], zipped_data[1], zipped_data[2], original_data[1]);
 
-  max_y = d3.max(data, function(d){return d[2] ? d[1]+d[2] : d[1];});
-  min_y = d3.min(data, function(d){return d[2] ? d[1]-d[2] : d[1];});
+  max_y = d3.max(data, function(d){return d[2] ? d3.max([d[1]+d[2], d[3]]) : d3.max([d[1], d[3]]);});
+  min_y = d3.min(data, function(d){return d[2] ? d3.min([d[1]-d[2], d[3]]) : d3.min([d[1], d[3]]);});
 
   //Add margins
   max_y += max_y*.2
