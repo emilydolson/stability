@@ -190,7 +190,8 @@ function addCard(variable) {
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
-  options = {"smoothing":document.getElementById(variable+"-smoothness-slider").value,
+  options = {"variable":variable,
+             "smoothing":document.getElementById(variable+"-smoothness-slider").value,
              "y_axis_ticks":document.getElementById(variable+"-y_axis-toggle").checked,
              "confint":document.getElementById(variable+"-plot-confint-toggle").checked,
              "points":document.getElementById(variable+"-plot-points-toggle").checked
@@ -389,9 +390,16 @@ function getPreferences() {
       type:"POST",
       contentType:"application/json",
       data:JSON.stringify({"user":id_token}),
-      success:function(settings) {console.log("success:", settings);},
+      success:function(settings) {restoreSettings(settings);},
       error: function() {alert("failure");}
   });
+}
+
+function restoreSettings(settings) {
+  graphs = JSON.parse(settings);
+  for (graph in graphs) {
+    addCard(graphs[graph].options.variable);
+  }
 }
 
 function makeGraph(data, svg_id, options){
