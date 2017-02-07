@@ -62,7 +62,7 @@ function addCard(variable) {
                   .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--6-col", true)
 
   front.append("div")
-        .classed("mdl-card__title fullwidth mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--6-col", true)
+        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--6-col", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable.replace("-"," "));
