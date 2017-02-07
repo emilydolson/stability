@@ -59,7 +59,7 @@ function addCard(variable) {
       .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--12-col", true);
 
   var front = card.append("div")
-                  .classed("mdl-card setheight mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--12-col", true)
+                  .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--12-col", true)
 
   front.append("div")
         .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col", true)
@@ -68,7 +68,7 @@ function addCard(variable) {
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
       .attr("id", variable+"-graph");
 
@@ -80,11 +80,11 @@ function addCard(variable) {
       .text("Settings");
 
   var back = card.append("div")
-                .classed("back mdl-cell-stretch setheight mdl-card demo-options mdl-shadow--2dp mdl-color--deep-purple-500 mdl-cell mdl-cell--12-col", true)
+                .classed("back mdl-cell-stretch mdl-card demo-options mdl-shadow--2dp mdl-color--deep-purple-500 mdl-cell mdl-cell--12-col", true)
 
   var settings_div = back.append("div");
 
-  settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
+  settings_div.classed("mdl-card__supporting-text setheight_noheader mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3")
               .text("Settings")
               .attr("height", document.getElementById(variable+"-graph").offsetWidth/2);
