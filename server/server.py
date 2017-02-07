@@ -26,6 +26,8 @@ def update_settings():
     # value = response["value"]
     username = request.json["user"]
     value = request.json["value"]
+    conn.execute("UPDATE settings SET graph_settings={val} WHERE userid={username}"
+                 .format(val="'"+value+"'", username="'"+username+"'"))
     print "Hello " + str(username) + " value is " + str(value)
     return "Hello " + str(username) + " value is " + str(value)
 
