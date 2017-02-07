@@ -225,6 +225,7 @@ function callMakeGraph(variable, options){
   } else if (variable == "Active-time") {
     graphTotalActivityData(options);
   }
+  updatePreferences();
 }
 
 function toggleConfInt(variable) {
@@ -381,10 +382,16 @@ function updatePreferences() {
       success:function() {console.log("success");},
       error: function() {alert("failure");}
   });
+}
 
-  // var xmlHttp = new XMLHttpRequest();
-  // xmlHttp.open( "POST", "http://stability-app.com/update_settings", true );
-  // xmlHttp.send({"user":id_token, "value":true});
+function getPreferences() {
+  $.ajax("http://www.stability-app.com/get_settings", {
+      type:"POST",
+      contentType:"application/json",
+      data:JSON.stringify({"user":id_token}),
+      success:function(settings) {console.log("success:", settings);},
+      error: function() {alert("failure");}
+  });
 }
 
 function makeGraph(data, svg_id, options){

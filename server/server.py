@@ -22,9 +22,6 @@ c = conn.cursor()
 
 @app.post('/update_settings')  # or @route('/login', method='POST')
 def update_settings():
-    # response.content_type = 'application/json'
-    # username = response["user"]
-    # value = response["value"]
     username = request.json["user"]
     value = request.json["value"]
     c.execute("SELECT COUNT(*) FROM settings WHERE userid=\'{user}\'"
@@ -37,8 +34,14 @@ def update_settings():
         c.execute("INSERT INTO settings values (\'{user}\', \'{val}\')"
                   .format(user=username, val=value))
     conn.commit()
-    print "Hello " + str(username) + " value is " + str(value)
-    return "Hello " + str(username) + " value is " + str(value)
+
+
+@app.post('/get_settings')  # or @route('/login', method='POST')
+def get_settings():
+    username = request.json["user"]
+    c.execute("SELECT * FROM settings WHERE userid=\'{user}\'"
+              .format(user=username))
+    return c.fetchall()[0][1]
 
 
 @app.route("/<filepath:path>")
