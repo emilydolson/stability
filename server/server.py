@@ -36,6 +36,7 @@ def update_settings():
     else:
         c.execute("INSERT INTO settings values (\'{user}\', \'{val}\')"
                   .format(user=username, val=value))
+    conn.commit()
     print "Hello " + str(username) + " value is " + str(value)
     return "Hello " + str(username) + " value is " + str(value)
 
