@@ -229,7 +229,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   color: rgba(255, 255, 255, 0.89);
 }
 .demo-options .mdl-card__actions {
-  height: 64px;
+
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
