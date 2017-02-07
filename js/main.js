@@ -73,7 +73,6 @@ function addCard(variable) {
       .attr("id", variable+"-graph-container")
       .append("svg")
       .attr("width", document.getElementById(variable+"-graph-container").offsetWidth)
-      .attr("height", document.getElementById(variable+"-graph-container").offsetWidth/2+71)
       .attr("id", variable+"-graph");
 
   front.append("div")
