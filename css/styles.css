@@ -239,15 +239,7 @@ _:-ms-input-placeholder, :root .demo-graph {
           align-items: center;
 }
 
-.mdl-card__title {
-  width: 100%;
-}
-
-.mdl-card__supporting-text {
-  width: 100%;
-}
-
-.mdl-card__actions {
+.fullwidth {
   width: 100%;
 }
 
@@ -275,7 +267,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   /*position: absolute;*/
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   zindex: 900;
 
   -webkit-transform: rotateX(0) rotateY(0);

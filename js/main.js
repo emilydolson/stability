@@ -62,19 +62,19 @@ function addCard(variable) {
                   .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--6-col", true)
 
   front.append("div")
-        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--6-col", true)
+        .classed("mdl-card__title fullwidth mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--6-col", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600  mdl-cell mdl-cell--6-col", true)
+      .classed("mdl-card__supporting-text fullwidth setheight mdl-color-text--grey-600  mdl-cell mdl-cell--6-col", true)
       .append("div")
       .style("height", "100%")
       .attr("id", variable+"-graph");
 
   front.append("div")
-      .classed("mdl-card__actions mdl-card--border  mdl-cell mdl-cell--6-col", true)
+      .classed("mdl-card__actions fullwidth mdl-card--border  mdl-cell mdl-cell--6-col", true)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
