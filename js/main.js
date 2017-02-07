@@ -68,9 +68,9 @@ function addCard(variable) {
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
-      .classed("setheight", true)
+      .style("height", "100%")
       .attr("id", variable+"-graph");
 
   front.append("div")
