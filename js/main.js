@@ -53,13 +53,13 @@ function addCard(variable) {
 
   var card = d3.select("#card-area")
     .append("div")
-      .classed("mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-cell mdl-cell-stretch mdl-cell--12-col", true)
     .append("div")
       .attr("id", variable+"-card")
-      .classed("click panel mdl-cell mdl-cell--12-col", true);
+      .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--12-col", true);
 
   var front = card.append("div")
-                  .classed("mdl-card mdl-shadow--2dp front mdl-cell mdl-cell--12-col", true)
+                  .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--12-col", true)
 
   front.append("div")
         .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col", true)
@@ -80,7 +80,7 @@ function addCard(variable) {
       .text("Settings");
 
   var back = card.append("div")
-                .classed("back mdl-card demo-options mdl-shadow--2dp mdl-color--deep-purple-500 mdl-cell mdl-cell--12-col", true)
+                .classed("back mdl-cell-stretch mdl-card demo-options mdl-shadow--2dp mdl-color--deep-purple-500 mdl-cell mdl-cell--12-col", true)
 
   var settings_div = back.append("div");
 
