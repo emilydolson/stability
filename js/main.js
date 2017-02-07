@@ -85,7 +85,9 @@ function addCard(variable) {
   var settings_div = back.append("div");
 
   settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
-  settings_div.append("h3").text("Settings");
+  settings_div.append("h3")
+              .text("Settings")
+              .attr("height", document.getElementById(variable+"-graph").offsetWidth/2);
 
   var settings_list = settings_div.append("ul");
 
@@ -176,7 +178,6 @@ function addCard(variable) {
 
   back.append("div")
       .classed("mdl-card__actions mdl-card--border mdl-cell mdl-cell--12-col", true)
-      .attr("height", document.getElementById(variable+"-graph").offsetWidth/2)
       .append("button")
       .classed("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect", true)
       .attr("OnClick", "ToggleFlipped('#" + variable + "-card')")
