@@ -68,7 +68,7 @@ function addCard(variable) {
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
       .attr("id", variable+"-graph");
 
@@ -84,7 +84,7 @@ function addCard(variable) {
 
   var settings_div = back.append("div");
 
-  settings_div.classed("mdl-card__supporting-text mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
+  settings_div.classed("mdl-card__supporting-text setheight mdl-color-text--blue-grey-50  mdl-cell mdl-cell--12-col", true);
   settings_div.append("h3")
               .text("Settings")
               .attr("height", document.getElementById(variable+"-graph").offsetWidth/2);
