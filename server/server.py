@@ -1,9 +1,10 @@
 from bottle import route, run, static_file, get, post, request, response
-import bottle, sqlite3
+import bottle
+import sqlite3
 
 
 app = bottle.Bottle()
-#plugin = bottle.ext.sqlite.Plugin(dbfile="user_settings.db")
+# plugin = bottle.ext.sqlite.Plugin(dbfile="user_settings.db")
 
 conn = sqlite3.connect('user_settings.db')
 
@@ -17,7 +18,8 @@ conn = sqlite3.connect('user_settings.db')
 #         </form>
 #         '''
 
-@app.post('/update_settings') # or @route('/login', method='POST')
+
+@app.post('/update_settings')  # or @route('/login', method='POST')
 def update_settings():
     # response.content_type = 'application/json'
     # username = response["user"]
@@ -26,6 +28,7 @@ def update_settings():
     value = request.json["value"]
     print "Hello " + str(username) + " value is " + str(value)
     return "Hello " + str(username) + " value is " + str(value)
+
 
 @app.route("/<filepath:path>")
 def server_static(filepath):

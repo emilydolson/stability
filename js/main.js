@@ -318,7 +318,8 @@ function getActivity(){
           "type": "day",
           "value": 1,
           "timeZoneId": moment.tz.guess()
-        }}
+        }
+      }
     }
   });
   activity_data.then(function(response){
@@ -372,11 +373,11 @@ function extractDataFromStreams(streams) {
   return data;
 }
 
-function toggleLabelYAxis() {
+function updatePreferences() {
   $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
       contentType:"application/json",
-      data:JSON.stringify({"user":id_token, "value":true}),
+      data:JSON.stringify({"user":id_token, "value":JSON.stringify(graphs)}),
       success:function() {alert("success");},
       error: function() {alert("failure");}
   });
