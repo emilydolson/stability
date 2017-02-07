@@ -252,7 +252,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .setheight {
-  height: calc(50vw + 71px);
+  height: calc(25vw + 71px);
 }
 
 .setheight_noheader {
