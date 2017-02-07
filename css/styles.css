@@ -239,6 +239,10 @@ _:-ms-input-placeholder, :root .demo-graph {
           align-items: center;
 }
 
+.mdl-cell {
+  height:500px;
+}
+
 .panel {
   float: left;
   position: relative;
