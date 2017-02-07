@@ -278,6 +278,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   position: absolute;
   top: 0;
   left: 0;
+  height:600;
   z-index: 800;
   -webkit-transform: rotateY(-179deg);
           transform: rotateY(-179deg);
