@@ -70,6 +70,10 @@ function addCard(variable) {
   front.append("div")
       .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
+       .attr("id", variable+"-graph-container");
+      .append("svg")
+      .attr("width", document.getElementById(variable+"-graph-container").offsetWidth)
+      .attr("height", document.getElementById(variable+"-graph-container").offsetWidth/2+71)
       .attr("id", variable+"-graph");
 
   front.append("div")
@@ -425,10 +429,10 @@ function makeGraph(data, svg_id, options){
   var xAxis = d3.axisBottom(x),
       yAxis = d3.axisLeft(y);
 
-  var svg = d3.select(svg_id)
-    .append("svg")
-      .attr("width", w + p + p)
-      .attr("height", h + p + p);
+  var svg = d3.select(svg_id);
+    // .append("svg")
+    //   .attr("width", w + p + p)
+    //   .attr("height", h + p + p);
   var vis =  svg.append("g")
       .attr("transform", "translate(" + p + "," + p + ")");
 
@@ -471,5 +475,5 @@ function makeGraph(data, svg_id, options){
       .attr("class", "left axis")
       .call(yAxis);
 
-  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":svg, "options":options};
+  graphs[id_without_hash] = {"x_axis":xAxis, "y_axis":yAxis, "vis":vis, "options":options};
 }
