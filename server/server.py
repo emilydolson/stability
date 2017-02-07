@@ -27,8 +27,15 @@ def update_settings():
     # value = response["value"]
     username = request.json["user"]
     value = request.json["value"]
-    c.execute("UPDATE settings SET graph_settings={val} WHERE userid={user}"
-              .format(val="'"+value+"'", user="'"+username+"'"))
+    c.execute("SELECT COUNT(*) FROM settings WHERE userid=\'{user}\'"
+              .format(user=username))
+    count = c.fetchall()
+    if count[0][0]:  #user is in db
+        c.execute("UPDATE settings SET graph_settings=\'{val}\' WHERE userid=\'{user}\'"
+              .format(val=value, user=username))
+    else:
+        c.execute("INSERT INTO settings values (\'{user}\', \'{val}\')"
+                  .format(user=username, val=value))
     print "Hello " + str(username) + " value is " + str(value)
     return "Hello " + str(username) + " value is " + str(value)
 
