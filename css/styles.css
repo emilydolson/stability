@@ -239,15 +239,15 @@ _:-ms-input-placeholder, :root .demo-graph {
           align-items: center;
 }
 
-.panel.mdl-card__title {
+.mdl-card__title {
   width: 100%;
 }
 
-.panel.mdl-card__supporting-text {
+.mdl-card__supporting-text {
   width: 100%;
 }
 
-.panel.mdl-card__actions {
+.mdl-card__actions {
   width: 100%;
 }
 
