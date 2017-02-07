@@ -242,7 +242,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 .panel {
   float: left;
   position: relative;
-  padding-bottom: 50%;
+  height:50vw;
   -webkit-perspective: 600px;
           perspective: 600px;
 }
@@ -252,6 +252,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   /*position: absolute;*/
   top: 0;
   left: 0;
+
   zindex: 900;
 
   -webkit-transform: rotateX(0) rotateY(0);
