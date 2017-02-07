@@ -250,7 +250,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .setheight {
-  height: calc(50vw + 71px + 60px);
+  height: calc(50vw + 71px + 124px);
 }
 
 .panel .front {

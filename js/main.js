@@ -59,7 +59,7 @@ function addCard(variable) {
       .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--12-col", true);
 
   var front = card.append("div")
-                  .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--12-col", true)
+                  .classed("mdl-card setheight mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--12-col", true)
 
   front.append("div")
         .classed("mdl-card__title mdl-card--expand mdl-color--teal-300  mdl-cell mdl-cell--12-col", true)
@@ -68,7 +68,7 @@ function addCard(variable) {
         .text(variable.replace("-"," "));
 
   front.append("div")
-      .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
+      .classed("mdl-card__supporting-text mdl-color-text--grey-600  mdl-cell mdl-cell--12-col", true)
       .append("div")
       .attr("id", variable+"-graph");
 
@@ -392,7 +392,7 @@ function makeGraph(data, svg_id, options){
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
   var w = document.getElementById(id_without_hash).offsetWidth,
-      h = document.getElementById(id_without_hash).offsetHeight,
+      h = document.getElementById(id_without_hash).style.height,
       p = 35.5,
       n = 100;
 
