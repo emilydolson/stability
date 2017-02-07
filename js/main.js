@@ -392,11 +392,12 @@ function makeGraph(data, svg_id, options){
   var id_without_hash = svg_id.slice(1, svg_id.length);
 
   var w = document.getElementById(id_without_hash).offsetWidth,
-      h = w/2,
+      h = document.getElementById(id_without_hash).offsetHeight,
       p = 35.5,
       n = 100;
 
   w -= 2*p; //margins need to come out of width
+  h -= 2*p; //margins need to come out of width
 
   var min_band = 2/data.length;
 
