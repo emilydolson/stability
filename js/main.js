@@ -259,8 +259,13 @@ function updateSmoothness(variable) {
   callMakeGraph(variable, g.options);
 }
 
-function getWeight() {
-  // 2. Initialize the JavaScript client library.
+function getWeight(callback) {
+
+  if (weight_data) {
+    callback();
+    return;
+  }
+
   gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources?dataTypeName=com.google.weight")
     .then(function(response) {
       weight_sources = response.result;
@@ -281,21 +286,21 @@ function getWeight() {
           data[el] = [new Date(+data[el].endTimeNanos/1000000), data[el].value[0].fpVal*2.20462];
         }
         weight_data = data;
+        callback();
       });
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
   });
 };
 
-function loadData() {
-  // d3.selectAll(".getdata").classed("disabled", false);
-  getWeight();
-  getActivity();
-}
+// function loadData() {
+//   // d3.selectAll(".getdata").classed("disabled", false);
+//   getWeight();
+//   getActivity();
+// }
 
 function loadGapi() {
-  gapi.load('client', loadData);
-  getPreferences();
+  gapi.load('client', getPreferences);
 };
 
 function getDataFromStream(streamId) {
@@ -303,7 +308,11 @@ function getDataFromStream(streamId) {
   return gapi.client.request("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+CURR_TIME);
 }
 
-function getActivity(){
+function getActivity(callback){
+  if (all_activity_data) {
+    callback();
+    return;
+  }
 
   var activity_data = gapi.client.request({
     "path" : "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
@@ -327,7 +336,7 @@ function getActivity(){
   });
   activity_data.then(function(response){
     all_activity_data = response.result.bucket;
-
+    callback();
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
   });
@@ -399,7 +408,13 @@ function getPreferences() {
 function restoreSettings(settings) {
   graphs = JSON.parse(settings);
   for (graph in graphs) {
-    addCard(graphs[graph].options.variable);
+    variable = graphs[graph].options.variable;
+    callback = function(){addCard(variable);}
+    if (variable == "Weight") {
+      getWeight(callback);
+    } else {
+      getActivity(callback);
+    }
   }
 }
 
