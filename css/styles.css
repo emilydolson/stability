@@ -204,6 +204,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 .mdl-card__title h1 {
   font-size: 3em;
+  text-shadow: 2px 2px 2px black;
 }
 
 .demo-updates .mdl-card__title {
