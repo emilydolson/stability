@@ -109,6 +109,7 @@ function addCard(variable, options=null) {
       .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600 ", true)
       .append("div")
       .style("height", "100%")
+      .style("width", "100%")
       .attr("id", variable+"-graph")
       .append("div")
       .classed("mdl-spinner mdl-js-spinner is-active center", true)
