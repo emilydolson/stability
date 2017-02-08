@@ -15,6 +15,13 @@ var defaults = {
                    "points": true,
                    "index" : 0
                   },
+  "Steps" :       {"variable": "Steps",
+                   "smoothing": .3,
+                   "y_axis_ticks": true,
+                   "confint": true,
+                   "points": true,
+                   "index" : 0
+                  },
   "Sleep" :       {"variable": "Sleep",
                    "smoothing": .3,
                    "y_axis_ticks": true,
