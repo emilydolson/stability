@@ -68,6 +68,14 @@ function onSignIn(googleUser) {
       .attr("onclick", "signOut();")
       .text("Sign out");
 
+  $("#safe-mode-switch").on("change", function(){
+    if (this.checked) {
+      safeModeOn();
+    } else {
+      safeModeOff();
+    }
+  });
+
   loadGapi();
 }
 
@@ -88,6 +96,14 @@ function signOut() {
     d3.select("#sign-in-button").classed("visuallyhidden", false);
     console.log('User signed out.');
   });
+}
+
+function safeModeOn() {
+  d3.selectAll(".unsafe").classed("hidden", true);
+}
+
+function safeModeOff() {
+  d3.selectAll(".unsafe").classed("hidden", false);
 }
 
 function removeCard(id) {

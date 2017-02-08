@@ -105,30 +105,24 @@
 
           </header>
 
-          <!-- <div class="demo-drawer-header">
+          <div class="demo-drawer-header">
             <div class="mdl-layout-spacer"><br></div>
 
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-              <input type="checkbox" id="switch-1" class="mdl-switch__input">
-              <span class="mdl-switch__label"> Y-axis labels</span>
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="safe-mode-switch">
+              <input type="checkbox" id="safe-mode-switch" class="mdl-switch__input">
+              <span class="mdl-switch__label">Safe Mode</span>
             </label>
 
             <div class="mdl-layout-spacer"><br></div>
 
             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
               <input type="checkbox" id="switch-2" class="mdl-switch__input" checked>
-              <span class="mdl-switch__label"> Plot points</span>
+              <span class="mdl-switch__label"></span>
             </label>
 
             <div class="mdl-layout-spacer"><br></div>
 
-            <p style="width:100%">
-              <input class="mdl-slider mdl-js-slider" type="range"
-                min="0" max="100" value="25" tabindex="0" onchange="console.log('changed');">
-              <span class="mdl-switch__label" style="justify-content:center">Smoothing</span>
-            </p>
-
-          </div> -->
+          </div>
         </div>
 
       <main class="mdl-layout__content mdl-color--grey-100">
@@ -214,7 +208,7 @@
             <li class="mdl-menu__item" OnClick="addCard('Active-time');">Active Time</li>
             <li class="mdl-menu__item" OnClick="addCard('Steps');">Steps</li>
             <li class="mdl-menu__item" OnClick="addCard('Distance');">Distance</li>
-            <li class="mdl-menu__item "OnClick="addCard('Weight');">Weight</li>
+            <li class="mdl-menu__item unsafe" OnClick="addCard('Weight');">Weight</li>
           </ul>
          <button id="add-graph" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
            <i class="material-icons">add</i>
