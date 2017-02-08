@@ -1,4 +1,5 @@
 from bottle import route, run, static_file, get, post, request, response
+from oauth2client import client, crypt
 import bottle
 import sqlite3
 
@@ -9,27 +10,30 @@ app = bottle.Bottle()
 conn = sqlite3.connect('user_settings.db')
 c = conn.cursor()
 
-# @app.route('/update_settings') # or @route('/login')
-# def login():
-#     return '''
-#         <form action="/login" method="post">
-#             Username: <input name="username" type="text" />
-#             Password: <input name="password" type="password" />
-#             <input value="Login" type="submit" />
-#         </form>
-#         '''
-
 
 @app.post('/update_settings')  # or @route('/login', method='POST')
 def update_settings():
     username = request.json["user"]
     value = request.json["value"]
+
+    try:
+        idinfo = client.verify_id_token(username, "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com")
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise crypt.AppIdentityError("Wrong issuer.")
+
+    except crypt.AppIdentityError:
+        return "Invalid token"
+
+    userid = idinfo['sub']
+
     c.execute("SELECT COUNT(*) FROM settings WHERE userid=\'{user}\'"
               .format(user=username))
     count = c.fetchall()
-    if count[0][0]:  #user is in db
-        c.execute("UPDATE settings SET graph_settings=\'{val}\' WHERE userid=\'{user}\'"
-              .format(val=value, user=username))
+    if count[0][0]:  # user is in db
+        c.execute(
+            "UPDATE settings SET graph_settings=\'{vl}\' WHERE userid=\'{us}\'"
+            .format(vl=value, us=userid))
     else:
         c.execute("INSERT INTO settings values (\'{user}\', \'{val}\')"
                   .format(user=username, val=value))
