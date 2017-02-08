@@ -377,12 +377,6 @@ function getPreferences() {
 function restoreSettings(settings) {
   graphs = JSON.parse(settings);
   for (graph in graphs) {
-    variable = graphs[graph].options.variable;
-    callback = function(){addCard(variable);}
-    if (variable == "Weight") {
-      getWeight(callback);
-    } else {
-      getActivity(callback);
-    }
+    addCard(graphs[graph].options.variable);
   }
 }
