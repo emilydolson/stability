@@ -9,8 +9,6 @@ function makeGraph(data, svg_id, options){
       p = 35.5,
       n = 100;
 
-  console.log(h);
-
   w -= 2*p; //margins need to come out of width
   h -= 2*p; //margins need to come out of width
 

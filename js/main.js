@@ -7,6 +7,27 @@ var all_data = {};
 var id_token;
 var graphs = {};
 
+var defaults = {
+  "Active-time" : {"variable": "Active-time",
+                   "smoothing": .3,
+                   "y_axis_ticks": true,
+                   "confint": true,
+                   "points": true
+                  },
+  "Sleep" :       {"variable": "Sleep",
+                   "smoothing": .3,
+                   "y_axis_ticks": true,
+                   "confint": true,
+                   "points": true
+                  },
+  "Weight" :      {"variable": "Weight",
+                   "smoothing": .9,
+                   "y_axis_ticks": false,
+                   "confint": true,
+                   "points": false
+                  }
+}
+
 function ToggleFlipped(id) {
   d3.select(id).classed('flip', !d3.select(id).classed('flip'));
 }
@@ -52,7 +73,11 @@ function signOut() {
   });
 }
 
-function addCard(variable) {
+function addCard(variable, options=null) {
+
+  if (!options) {
+    options = defaults[variable];
+  }
 
   var card = d3.select("#card-area")
     .append("div")
@@ -107,7 +132,7 @@ function addCard(variable) {
        .attr("type", "checkbox")
        .attr("id", variable+"-y_axis-toggle");
 
-  if (variable != "Weight") {
+  if (options.y_axis_ticks) {
     document.getElementById(variable+"-y_axis-toggle").checked = true;
   }
 
@@ -129,12 +154,15 @@ function addCard(variable) {
        .attr("type", "checkbox")
        .attr("id", variable+"-plot-points-toggle");
 
+  if (options.points) {
+    document.getElementById(variable+"-plot-points-toggle").checked = true;
+  }
+
+  $("#"+variable+"-plot-points-toggle").on("change", function(){togglePoints(variable);});
 
   label.append("span")
        .classed("mdl-switch__label", true)
        .text("Plot points");
-
-  $("#"+variable+"-plot-points-toggle").on("change", function(){togglePoints(variable);});
 
   // Confidence interval switch
 
@@ -148,6 +176,10 @@ function addCard(variable) {
       .attr("type", "checkbox")
       .property("checked", true)
       .attr("id", variable+"-plot-confint-toggle");
+
+  if (options.confint) {
+    document.getElementById(variable+"-plot-confint-toggle").checked = true;
+  }
 
   $("#"+variable+"-plot-confint-toggle").on("change", function(){toggleConfInt(variable);});
 
@@ -171,7 +203,7 @@ function addCard(variable) {
          .attr("max", 1)
          .attr("tabindex", 0)
          .attr("step", .01)
-         .attr("value", .8)
+         .attr("value", options.smoothing)
          .attr("id", variable+"-smoothness-slider")
          .attr("oninput", "updateSmoothness('"+variable+"');") //should really by onchange, but that doesn't work for some reason
          .classed("mdl-slider mdl-js-slider", true);
@@ -192,13 +224,6 @@ function addCard(variable) {
     }
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
-
-  options = {"variable":variable,
-             "smoothing":document.getElementById(variable+"-smoothness-slider").value,
-             "y_axis_ticks":document.getElementById(variable+"-y_axis-toggle").checked,
-             "confint":document.getElementById(variable+"-plot-confint-toggle").checked,
-             "points":document.getElementById(variable+"-plot-points-toggle").checked
-           };
 
   callMakeGraph(variable, options);
 }
@@ -271,14 +296,6 @@ function updateSmoothness(variable) {
   g.vis.remove();
   callMakeGraph(variable, g.options);
 }
-
-// function loadData() {
-//   // d3.selectAll(".getdata").classed("disabled", false);
-//   getWeight();
-//   getActivity();
-// }
-
-
 
 function getDataFromStream(streamId) {
   console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+CURR_TIME);
@@ -354,15 +371,13 @@ function getActivity(callback){
 }
 
 
-
-
 function updatePreferences() {
   $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
       contentType:"application/json",
       data:JSON.stringify({"user":id_token, "value":JSON.stringify(graphs)}),
-      success:function() {console.log("success");},
-      error: function() {alert("failure");}
+      success:function() {console.log("preferences updated");},
+      error: function() {console.log("failed to update preferences");}
   });
 }
 
@@ -372,13 +387,13 @@ function getPreferences() {
       contentType:"application/json",
       data:JSON.stringify({"user":id_token}),
       success:function(settings) {restoreSettings(settings);},
-      error: function() {alert("failure");}
+      error: function() {console.log("failed to get preferences");}
   });
 }
 
 function restoreSettings(settings) {
   graphs = JSON.parse(settings);
   for (graph in graphs) {
-    addCard(graphs[graph].options.variable);
+    addCard(graphs[graph].options.variable, graphs[graph].options);
   }
 }
