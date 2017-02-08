@@ -103,7 +103,7 @@ function addCard(variable, options=null) {
         .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true)
       .append("h2")
         .classed("mdl-card__title-text", true)
-        .text(variable.replace("-"," "));
+        .text(options.variable.replace("-"," "));
 
   front.append("div")
       .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600 ", true)
