@@ -179,6 +179,14 @@ _:-ms-input-placeholder, :root .demo-graph {
   z-index:998;
 }
 
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .demo-cards {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
