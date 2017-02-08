@@ -81,8 +81,8 @@ function addCard(variable, options=null) {
   if (!options) {
     options = defaults[variable];
     for (g in graphs) {
-      console.log(graphs[g].variable, variable);
-      if (graphs[g].variable == variable) {
+      console.log(graphs[g].options.variable, variable);
+      if (graphs[g].options.variable == variable) {
         options.index += 1;
       }
     }
