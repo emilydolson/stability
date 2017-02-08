@@ -5,6 +5,8 @@ function makeGraph(data, svg_id, options){
   var id_without_hash = svg_id;
   svg_id = "#" + svg_id;
 
+  d3.select(svg_id+"-spinner").classed("is-active", false);
+
   var w = document.getElementById(id_without_hash).offsetWidth,
       h = document.getElementById(id_without_hash).offsetHeight,
       p = 35.5,

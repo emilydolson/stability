@@ -81,7 +81,6 @@ function addCard(variable, options=null) {
   if (!options) {
     options = defaults[variable];
     for (g in graphs) {
-      console.log(graphs[g].options.variable, variable);
       if (graphs[g].options.variable == variable) {
         options.index += 1;
       }
@@ -110,7 +109,10 @@ function addCard(variable, options=null) {
       .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600 ", true)
       .append("div")
       .style("height", "100%")
-      .attr("id", variable+"-graph");
+      .attr("id", variable+"-graph")
+      .append("div")
+      .classed("mdl-spinner mdl-js-spinner is-active", true)
+      .attr("id", variable+"-graph-spinner");
 
   front.append("div")
       .classed("mdl-card__actions mdl-card--border", true)
