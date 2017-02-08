@@ -307,6 +307,12 @@ function callMakeGraph(options){
       makeGraph(all_data.stepcount, options.variable + options.index+"-graph", options);
       updatePreferences();
     });
+  } else if (options.variable == "Distance") {
+    getActivity("com.google.distance.delta", "day", function() {
+      calcDistanceTotal(all_data);
+      makeGraph(all_data.stepcount, options.variable + options.index+"-graph", options);
+      updatePreferences();
+    });
   }
 }
 

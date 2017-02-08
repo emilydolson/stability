@@ -135,7 +135,7 @@ function calcStepCount(all_data){
   if (all_data.stepcount) {
     return;
   }
-  console.log(all_data)
+
   data = [];
   for (i in all_data["com.google.step_count.delta"]["day"]) {
     if (all_data["com.google.step_count.delta"]["day"][i].dataset[0].point.length > 0) {
@@ -143,6 +143,23 @@ function calcStepCount(all_data){
     }
     for (j in all_data["com.google.step_count.delta"]["day"][i].dataset[0].point){
       data[data.length-1][1] += +all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
+    }
+  }
+  all_data.stepcount = data;
+}
+
+function calcDistanceTotal(all_data){
+  if (all_data.stepcount) {
+    return;
+  }
+
+  data = [];
+  for (i in all_data["com.google.distance.delta"]["day"]) {
+    if (all_data["com.google.distance.delta"]["day"][i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_data["com.google.distance.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+    }
+    for (j in all_data["com.google.distance.delta"]["day"][i].dataset[0].point){
+      data[data.length-1][1] += +all_data["com.google.distance.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
     }
   }
   all_data.stepcount = data;
