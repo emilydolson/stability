@@ -2,7 +2,8 @@ function makeGraph(data, svg_id, options){
   // Based on https://github.com/jasondavies/science.js/blob/master/examples/loess/loess.js
 
 
-  var id_without_hash = svg_id.slice(1, svg_id.length);
+  var id_without_hash = svg_id;
+  svg_id = "#" + svg_id;
 
   var w = document.getElementById(id_without_hash).offsetWidth,
       h = document.getElementById(id_without_hash).offsetHeight,
