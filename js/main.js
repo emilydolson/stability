@@ -286,6 +286,10 @@ function toggleConfInt(variable) {
   var g = graphs[variable+"-graph"];
   g.options.confint = !g.options.confint;
   g.vis.remove();
+  d3.select("#"+variable+"-graph")
+    .append("div")
+    .classed("mdl-spinner mdl-js-spinner is-active center", true)
+    .attr("id", variable+"-graph-spinner");
   callMakeGraph(g.options);
 }
 
@@ -293,6 +297,10 @@ function togglePoints(variable) {
   var g = graphs[variable+"-graph"];
   g.options.points = !g.options.points;
   g.vis.remove();
+  d3.select("#"+variable+"-graph")
+    .append("div")
+    .classed("mdl-spinner mdl-js-spinner is-active center", true)
+    .attr("id", variable+"-graph-spinner");
   callMakeGraph(g.options);
 }
 
@@ -300,6 +308,10 @@ function toggleYAxis(variable) {
   var g = graphs[variable+"-graph"];
   g.options.y_axis_ticks = !g.options.y_axis_ticks;
   g.vis.remove();
+  d3.select("#"+variable+"-graph")
+    .append("div")
+    .classed("mdl-spinner mdl-js-spinner is-active center", true)
+    .attr("id", variable+"-graph-spinner");
   callMakeGraph(g.options);
 }
 
@@ -307,6 +319,10 @@ function updateSmoothness(variable) {
   var g = graphs[variable+"-graph"];
   g.options.smoothing = document.getElementById(variable+"-smoothness-slider").value;
   g.vis.remove();
+  d3.select("#"+variable+"-graph")
+    .append("div")
+    .classed("mdl-spinner mdl-js-spinner is-active center", true)
+    .attr("id", variable+"-graph-spinner");
   callMakeGraph(g.options);
 }
 
