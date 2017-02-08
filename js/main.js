@@ -387,7 +387,9 @@ function getWeight(callback) {
 };
 
 function getActivity(type, timeunit, callback){
-  if (all_data[type][timeunit]) {
+  if (!all_data[type]) {
+    all_data[type] = {}
+  } else if (all_data[type][timeunit]) {
     callback();
     return;
   }
