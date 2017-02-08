@@ -20,10 +20,12 @@ def update_settings():
         idinfo = client.verify_id_token(username, "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com")
 
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            print "Wrong issuer"
             raise crypt.AppIdentityError("Wrong issuer.")
 
     except crypt.AppIdentityError:
-        return "Invalid token"
+        print "Invalid token"
+        return
 
     userid = idinfo['sub']
 
