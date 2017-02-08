@@ -201,12 +201,19 @@ _:-ms-input-placeholder, :root .demo-graph {
 .demo-cards h3 {
   font-size: 1em;
 }
+
+.mdl-card__title h2 {
+  font-size: 3em;
+}
+
 .demo-updates .mdl-card__title {
-  min-height: 200px;
-  background-image: url('images/dog.png');
-  background-position: 90% 100%;
+  min-height: 400px;
+  background-image: url('../images/water.jpg');
+  background-position: 95% 100%;
   background-repeat: no-repeat;
 }
+
+
 .demo-cards .mdl-card__actions a {
   color: #00BCD4;
   text-decoration: none;
