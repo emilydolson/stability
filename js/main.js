@@ -229,7 +229,7 @@ function callMakeGraph(variable, options){
     });
   } else if (variable == "Weight") {
     getWeight(function(){
-      makeGraph(weight_data, "#Weight-graph", options);
+      makeGraph(all_data.weight_data, "#Weight-graph", options);
     })
   } else if (variable == "Active-time") {
     getActivity( function() {
