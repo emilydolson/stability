@@ -79,6 +79,7 @@ function signOut() {
 function removeCard(id) {
   d3.select(id).remove();
   delete graphs[id.slice(1,id.length-4)+"graph"];
+  updatePreferences();
 }
 
 function addCard(variable, options=null) {
@@ -95,8 +96,6 @@ function addCard(variable, options=null) {
   variable += options.index;
 
   var card = d3.select("#card-area")
-    .append("div")
-      .classed("mdl-cell mdl-cell-stretch mdl-cell--6-col", true)
     .append("div")
       .attr("id", variable+"-card")
       .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--6-col", true);
