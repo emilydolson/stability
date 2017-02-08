@@ -149,7 +149,7 @@ function calcStepCount(all_data){
 }
 
 function calcDistanceTotal(all_data){
-  if (all_data.stepcount) {
+  if (all_data.totaldistance) {
     return;
   }
 
@@ -162,7 +162,7 @@ function calcDistanceTotal(all_data){
       data[data.length-1][1] += +all_data["com.google.distance.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
     }
   }
-  all_data.stepcount = data;
+  all_data.totaldistance = data;
 }
 
 function extractDataFromStreams(streams) {
