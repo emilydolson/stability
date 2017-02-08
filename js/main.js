@@ -107,7 +107,7 @@ function addCard(variable, options=null) {
         .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true);
 
   title.append("button")
-       .attr("OnClick", "removeCard('#" + variable + card + "')")
+       .attr("OnClick", "removeCard('#" + variable + "-card')")
        .classed("mdl-button mdl-js-button mdl-button--icon upperright", true)
        .append("i")
        .classed("material-icons", true)
