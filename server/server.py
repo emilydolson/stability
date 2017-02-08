@@ -28,7 +28,7 @@ def update_settings():
         return
 
     userid = idinfo['sub']
-
+    print userid
     c.execute("SELECT COUNT(*) FROM settings WHERE userid=\'{user}\'"
               .format(user=username))
     count = c.fetchall()
@@ -58,7 +58,7 @@ def get_settings():
         return
 
     userid = idinfo['sub']
-
+    print userid
     c.execute("SELECT * FROM settings WHERE userid=\'{user}\'"
               .format(user=userid))
     return c.fetchall()[0][1]
