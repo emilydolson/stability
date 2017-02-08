@@ -159,7 +159,7 @@ function calcDistanceTotal(all_data){
       data.push([new Date(+all_data["com.google.distance.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
     for (j in all_data["com.google.distance.delta"]["day"][i].dataset[0].point){
-      data[data.length-1][1] += +all_data["com.google.distance.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
+      data[data.length-1][1] += +all_data["com.google.distance.delta"]["day"][i].dataset[0].point[j].value[0].fpVal;
     }
   }
   all_data.totaldistance = data;
