@@ -30,7 +30,7 @@ def update_settings():
     userid = idinfo['sub']
     print userid
     c.execute("SELECT COUNT(*) FROM settings WHERE userid=\'{user}\'"
-              .format(user=username))
+              .format(user=userid))
     count = c.fetchall()
     if count[0][0]:  # user is in db
         c.execute(
