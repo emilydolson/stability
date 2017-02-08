@@ -87,7 +87,7 @@ function addCard(variable, options=null) {
     }
   }
 
-  variable += options.index
+  variable += options.index;
 
   var card = d3.select("#card-area")
     .append("div")
@@ -260,18 +260,18 @@ function callMakeGraph(options){
   if (options.variable == "Sleep") {
     getActivity( function() {
       calcSleepTimeData(all_data);
-      makeGraph(all_data.sleeptime, "#Sleep-graph", options);
+      makeGraph(all_data.sleeptime, options.variable + options.index + "-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Weight") {
     getWeight(function(){
-      makeGraph(all_data.weight_data, "#Weight-graph", options);
+      makeGraph(all_data.weight_data, options.variable + options.index + "-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Active-time") {
     getActivity( function() {
       calcActiveTimeData(all_data);
-      makeGraph(all_data.activetime, "#Active-time-graph", options);
+      makeGraph(all_data.activetime, options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   }
