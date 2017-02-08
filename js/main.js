@@ -422,7 +422,7 @@ function getActivity(type, timeunit, callback){
     }
   });
   activity_data.then(function(response){
-    all_data["com.google.activity.segment"]["day"] = response.result.bucket;
+    all_data[type][timeunit] = response.result.bucket;
     callback();
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
