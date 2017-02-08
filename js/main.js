@@ -96,9 +96,11 @@ function addCard(variable, options=null) {
   variable += options.index;
 
   var card = d3.select("#card-area")
+    // .append("div")
+    //   .classed("mdl-cell mdl-cell-stretch mdl-cell--6-col", true)
     .append("div")
       .attr("id", variable+"-card")
-      .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--6-col", true);
+      .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--7-col", true);
 
   var front = card.append("div")
                   .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--6-col", true)
