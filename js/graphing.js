@@ -142,9 +142,7 @@ function calcStepCount(all_data){
       data.push([new Date(+all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
     for (j in all_data["com.google.step_count.delta"]["day"][i].dataset[0].point){
-      if (!NON_ACTIVE_NUMBERS.includes(+all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[0].intVal)) {
-        data[data.length-1][1] += +all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[1].intVal/3600000;
-      }
+      data[data.length-1][1] += +all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
     }
   }
   all_data.stepcount = data;
