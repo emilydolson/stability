@@ -77,7 +77,7 @@ function signOut() {
 }
 
 function removeCard(id) {
-  d3.select(id).remove();
+  d3.select(id+"-outer").remove();
   delete graphs[id.slice(1,id.length-4)+"graph"];
   updatePreferences();
 }
@@ -87,10 +87,8 @@ function addCard(variable, options=null) {
   if (!options) {
     options = defaults[variable];
     for (g in graphs) {
-      console.log(graphs[g].options.variable, variable)
       if (graphs[g].options.variable == variable) {
         options.index += 1;
-        console.log(options.index)
       }
     }
   }
@@ -100,8 +98,9 @@ function addCard(variable, options=null) {
   var card = d3.select("#card-area")
     .append("div")
       .classed("mdl-cell mdl-cell-stretch mdl-cell--6-col", true)
-      .attr("id", variable+"-card")
+      .attr("id", variable+"-card-outer")
     .append("div")
+      .attr("id", variable+"-card")
       .classed("click panel mdl-cell mdl-cell-stretch mdl-cell--6-col", true);
 
   var front = card.append("div")
