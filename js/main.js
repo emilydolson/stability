@@ -111,7 +111,7 @@ function addCard(variable, options=null) {
       .style("height", "100%")
       .attr("id", variable+"-graph")
       .append("div")
-      .classed("mdl-spinner mdl-js-spinner is-active", true)
+      .classed("mdl-spinner mdl-js-spinner is-active center", true)
       .attr("id", variable+"-graph-spinner");
 
   front.append("div")
