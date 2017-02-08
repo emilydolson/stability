@@ -110,7 +110,7 @@ function addCard(variable, options=null) {
        .attr("OnClick", "removeCard('#" + variable + card + "')")
        .classed("mdl-button mdl-js-button mdl-button--icon upperright", true)
        .append("i")
-       .classed("material-icons")
+       .classed("material-icons", true)
        .text("clear");
 
   title.append("h2")
