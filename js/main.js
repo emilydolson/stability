@@ -295,7 +295,7 @@ function loadData() {
 
 function loadGapi() {
   gapi.load('client', loadData);
-  restoreSettings();
+  getPreferences();
 };
 
 function getDataFromStream(streamId) {
