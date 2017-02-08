@@ -78,7 +78,7 @@ function signOut() {
 
 function removeCard(id) {
   d3.select(id).remove();
-  delete graphs[id.slice(1,id.length-5)+"graph"];
+  delete graphs[id.slice(1,id.length-4)+"graph"];
 }
 
 function addCard(variable, options=null) {
