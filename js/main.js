@@ -103,11 +103,19 @@ function addCard(variable, options=null) {
   var front = card.append("div")
                   .classed("mdl-card mdl-shadow--2dp mdl-cell-stretch front mdl-cell mdl-cell--6-col", true)
 
-  front.append("div")
-        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true)
-      .append("h2")
-        .classed("mdl-card__title-text", true)
-        .text(options.variable.replace("-"," "));
+  var title = front.append("div")
+        .classed("mdl-card__title mdl-card--expand mdl-color--teal-300", true);
+
+  title.append("button")
+       .attr("OnClick", "removeCard('#" + variable + card + "')")
+       .classed("mdl-button mdl-js-button mdl-button--icon upperright", true)
+       .append("i")
+       .classed("material-icons")
+       .text("clear");
+
+  title.append("h2")
+       .classed("mdl-card__title-text", true)
+       .text(options.variable.replace("-"," "));
 
   front.append("div")
       .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600 ", true)
