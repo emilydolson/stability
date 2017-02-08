@@ -226,18 +226,20 @@ function callMakeGraph(variable, options){
     getActivity( function() {
       calcSleepTimeData(all_data);
       makeGraph(all_data.sleeptime, "#Sleep-graph", options);
+      updatePreferences();
     });
   } else if (variable == "Weight") {
     getWeight(function(){
       makeGraph(all_data.weight_data, "#Weight-graph", options);
-    })
+      updatePreferences();
+    });
   } else if (variable == "Active-time") {
     getActivity( function() {
       calcActiveTimeData(all_data);
       makeGraph(all_data.activetime, "#Active-time-graph", options);
+      updatePreferences();
     });
   }
-  updatePreferences();
 }
 
 function toggleConfInt(variable) {
