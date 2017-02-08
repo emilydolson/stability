@@ -12,19 +12,22 @@ var defaults = {
                    "smoothing": .3,
                    "y_axis_ticks": true,
                    "confint": true,
-                   "points": true
+                   "points": true,
+                   "index" : 0
                   },
   "Sleep" :       {"variable": "Sleep",
                    "smoothing": .3,
                    "y_axis_ticks": true,
                    "confint": true,
-                   "points": true
+                   "points": true,
+                   "index" : 0
                   },
   "Weight" :      {"variable": "Weight",
                    "smoothing": .9,
                    "y_axis_ticks": false,
                    "confint": true,
-                   "points": false
+                   "points": false,
+                   "index" : 0
                   }
 }
 
@@ -77,7 +80,14 @@ function addCard(variable, options=null) {
 
   if (!options) {
     options = defaults[variable];
+    for (g in graphs) {
+      if (graphs[g].variable == variable) {
+        options.index += 1;
+      }
+    }
   }
+
+  variable += options.index
 
   var card = d3.select("#card-area")
     .append("div")
@@ -225,7 +235,7 @@ function addCard(variable, options=null) {
 
   //$("#"+variable+"-smoothness-slider").on("change", function(){updateSmoothness(variable);});
 
-  callMakeGraph(variable, options);
+  callMakeGraph(options);
 }
 
 function makeTimePeriodRadioButton(list_el, variable, unit, checked) {
@@ -246,19 +256,19 @@ function makeTimePeriodRadioButton(list_el, variable, unit, checked) {
        .text(unit[0].toUpperCase() + unit.slice(1) + "\xa0\xa0");
 }
 
-function callMakeGraph(variable, options){
-  if (variable == "Sleep") {
+function callMakeGraph(options){
+  if (options.variable == "Sleep") {
     getActivity( function() {
       calcSleepTimeData(all_data);
       makeGraph(all_data.sleeptime, "#Sleep-graph", options);
       updatePreferences();
     });
-  } else if (variable == "Weight") {
+  } else if (options.variable == "Weight") {
     getWeight(function(){
       makeGraph(all_data.weight_data, "#Weight-graph", options);
       updatePreferences();
     });
-  } else if (variable == "Active-time") {
+  } else if (options.variable == "Active-time") {
     getActivity( function() {
       calcActiveTimeData(all_data);
       makeGraph(all_data.activetime, "#Active-time-graph", options);
@@ -271,30 +281,28 @@ function toggleConfInt(variable) {
   var g = graphs[variable+"-graph"];
   g.options.confint = !g.options.confint;
   g.vis.remove();
-  callMakeGraph(variable, g.options);
+  callMakeGraph(g.options);
 }
 
 function togglePoints(variable) {
   var g = graphs[variable+"-graph"];
   g.options.points = !g.options.points;
   g.vis.remove();
-  callMakeGraph(variable, g.options);
+  callMakeGraph(g.options);
 }
 
 function toggleYAxis(variable) {
   var g = graphs[variable+"-graph"];
   g.options.y_axis_ticks = !g.options.y_axis_ticks;
   g.vis.remove();
-  callMakeGraph(variable, g.options);
+  callMakeGraph(g.options);
 }
 
 function updateSmoothness(variable) {
-  console.log("update smoothness");
   var g = graphs[variable+"-graph"];
   g.options.smoothing = document.getElementById(variable+"-smoothness-slider").value;
-  console.log(g.options.smoothing);
   g.vis.remove();
-  callMakeGraph(variable, g.options);
+  callMakeGraph(g.options);
 }
 
 function getDataFromStream(streamId) {
