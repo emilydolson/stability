@@ -202,11 +202,9 @@ _:-ms-input-placeholder, :root .demo-graph {
   font-size: 1em;
 }
 
-.mdl-card__title h2 {
-  font-size: 3em;
-}
 
 .demo-updates .mdl-card__title {
+  font-size: 3em;
   min-height: 400px;
   background-image: url('../images/water.jpg');
   background-position: 95% 100%;
