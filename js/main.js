@@ -107,7 +107,6 @@ function addCard(variable, options=null) {
 
   front.append("div")
       .classed("mdl-card__supporting-text setheight mdl-color-text--grey-600 ", true)
-      .style("height", "100%")
       .style("width", "100%")
       .append("div")
       .style("height", "100%")
