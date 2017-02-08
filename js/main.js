@@ -278,7 +278,7 @@ function makeTimePeriodRadioButton(list_el, variable, unit, checked) {
 
 function callMakeGraph(options){
   if (options.variable == "Sleep") {
-    getActivity( function() {
+    getActivity("com.google.activity.segment", "day", function() {
       calcSleepTimeData(all_data);
       makeGraph(all_data.sleeptime, options.variable + options.index + "-graph", options);
       updatePreferences();
@@ -289,7 +289,7 @@ function callMakeGraph(options){
       updatePreferences();
     });
   } else if (options.variable == "Active-time") {
-    getActivity( function() {
+    getActivity("com.google.activity.segment", "day", function() {
       calcActiveTimeData(all_data);
       makeGraph(all_data.activetime, options.variable + options.index+"-graph", options);
       updatePreferences();
@@ -380,8 +380,8 @@ function getWeight(callback) {
   });
 };
 
-function getActivity(callback){
-  if (all_data.all_activity_data) {
+function getActivity(type, timeunit, callback){
+  if (all_data[type][timeunit]) {
     callback();
     return;
   }
@@ -392,14 +392,14 @@ function getActivity(callback){
     "body":{
       "aggregateBy": [
         {
-          "dataTypeName": "com.google.activity.segment"
+          "dataTypeName": type
         }
       ],
       "endTimeMillis": Date.now(),
       "startTimeMillis": Date.now() - (30*DAY),
       "bucketByTime": {
         "period": {
-          "type": "day",
+          "type": timeunit,
           "value": 1,
           "timeZoneId": moment.tz.guess()
         }
@@ -407,7 +407,7 @@ function getActivity(callback){
     }
   });
   activity_data.then(function(response){
-    all_data.all_activity_data = response.result.bucket;
+    all_data["com.google.activity.segment"]["day"] = response.result.bucket;
     callback();
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
