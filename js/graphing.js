@@ -131,11 +131,11 @@ function calcActiveTimeData(all_data){
   all_data.activetime = data;
 }
 
-function calcActiveTimeData(all_data){
+function calcStepCount(all_data){
   if (all_data.stepcount) {
     return;
   }
-  concsoole.log(all_data)
+  console.log(all_data)
   data = [];
   for (i in all_data["com.google.step_count.delta"]["day"]) {
     if (all_data["com.google.step_count.delta"]["day"][i].dataset[0].point.length > 0) {
