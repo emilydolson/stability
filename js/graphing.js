@@ -103,7 +103,7 @@ function calcSleepTimeData(all_data){
     if (all_data["com.google.activity.segment"]["day"][i].dataset[0].point.length > 0) {
       sleep_data.push([new Date(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
-    for (j in all_data.["com.google.activity.segment"]["day"][i].dataset[0].point){
+    for (j in all_data["com.google.activity.segment"]["day"][i].dataset[0].point){
       if (SLEEP_NUMBERS.includes(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[0].intVal)) {
         sleep_data[sleep_data.length-1][1] += +all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[1].intVal/3600000;
       }
