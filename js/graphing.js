@@ -131,6 +131,25 @@ function calcActiveTimeData(all_data){
   all_data.activetime = data;
 }
 
+function calcActiveTimeData(all_data){
+  if (all_data.stepcount) {
+    return;
+  }
+  concsoole.log(all_data)
+  data = [];
+  for (i in all_data["com.google.step_count.delta"]["day"]) {
+    if (all_data["com.google.step_count.delta"]["day"][i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+    }
+    for (j in all_data["com.google.step_count.delta"]["day"][i].dataset[0].point){
+      if (!NON_ACTIVE_NUMBERS.includes(+all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[0].intVal)) {
+        data[data.length-1][1] += +all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[1].intVal/3600000;
+      }
+    }
+  }
+  all_data.stepcount = data;
+}
+
 function extractDataFromStreams(streams) {
   var data = [];
   for (stream in streams) {

@@ -294,6 +294,12 @@ function callMakeGraph(options){
       makeGraph(all_data.activetime, options.variable + options.index+"-graph", options);
       updatePreferences();
     });
+  } else if (options.variable == "Steps") {
+    getActivity("com.google.step_count.delta", "day", function() {
+      calcStepCount(all_data);
+      makeGraph(all_data.stepcount, options.variable + options.index+"-graph", options);
+      updatePreferences();
+    });
   }
 }
 
