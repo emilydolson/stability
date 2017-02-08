@@ -76,6 +76,10 @@ function signOut() {
   });
 }
 
+function removeCard(id) {
+  d3.select(id).remove();
+}
+
 function addCard(variable, options=null) {
 
   if (!options) {

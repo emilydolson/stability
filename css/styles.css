@@ -186,6 +186,12 @@ _:-ms-input-placeholder, :root .demo-graph {
   transform: translate(-50%, -50%);
 }
 
+.upperright {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+}
+
 .demo-cards {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
