@@ -45,8 +45,22 @@ def update_settings():
 @app.post('/get_settings')  # or @route('/login', method='POST')
 def get_settings():
     username = request.json["user"]
+
+    try:
+        idinfo = client.verify_id_token(username, "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com")
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            print "Wrong issuer"
+            raise crypt.AppIdentityError("Wrong issuer.")
+
+    except crypt.AppIdentityError:
+        print "Invalid token"
+        return
+
+    userid = idinfo['sub']
+
     c.execute("SELECT * FROM settings WHERE userid=\'{user}\'"
-              .format(user=username))
+              .format(user=userid))
     return c.fetchall()[0][1]
 
 
