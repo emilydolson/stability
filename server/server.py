@@ -3,7 +3,7 @@ from oauth2client import client, crypt
 import bottle
 import sqlite3
 
-
+ID = "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com"
 app = bottle.Bottle()
 # plugin = bottle.ext.sqlite.Plugin(dbfile="user_settings.db")
 
@@ -17,9 +17,10 @@ def update_settings():
     value = request.json["value"]
 
     try:
-        idinfo = client.verify_id_token(username, "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com")
+        idinfo = client.verify_id_token(username, ID)
 
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+        if idinfo['iss'] not in ['accounts.google.com',
+                                 'https://accounts.google.com']:
             print "Wrong issuer"
             raise crypt.AppIdentityError("Wrong issuer.")
 
@@ -47,9 +48,10 @@ def get_settings():
     username = request.json["user"]
 
     try:
-        idinfo = client.verify_id_token(username, "262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com")
+        idinfo = client.verify_id_token(username, ID)
 
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+        if idinfo['iss'] not in ['accounts.google.com',
+                                 'https://accounts.google.com']:
             print "Wrong issuer"
             raise crypt.AppIdentityError("Wrong issuer.")
 

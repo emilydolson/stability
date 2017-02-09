@@ -1,0 +1,134 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Stability - FAQ</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
+    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.nutrition.read https://www.googleapis.com/auth/fitness.location.read">
+    <meta name="google-signin-client_id" content="262605754785-dtkb6a01rr39bdf8v2o8hp1b9p77eb68.apps.googleusercontent.com">
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Stability</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href="index.html">Home</a>
+              <!-- <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a> -->
+              <!-- <a class="mdl-navigation__link">    </a> -->
+            </nav>
+          </div>
+        </header>
+        <main class="mdl-layout__content">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>Frequently Asked Questions</h4>
+
+              <ul class="toc">
+                <a href="#whoisitfor">Who is Stability for?</a>
+                <a href="#datasecurity">Is my data safe?</a>
+                <a href="#safemode">What is safe mode?</a>
+                <a href="#featurereq">I have a feature request!</a>
+                <a href="#whoareyou">Who are you?</a>
+              </ul>
+
+              <h5 id="whoisitfor">Who is Stability for?</h5>
+              <p> Stability is for anyone who wants to use it! People who might particularly want to use it include:</p>
+              <ul>
+                <li>People who want a lot of control over how they visualize their fitness data.</li>
+                <li>People who have a complicated relationship to food and/or exercise.</li>
+                <li>People who don't want to look at overall trajectories without getting caught up on individual numbers.</li>
+              </ul>
+
+              <p>
+                Everyone has different health needs. I made Stability because my needs and the needs of people I care about weren't being served well by existing health and fitness apps. If you think Stability might meet your needs, give it a try!
+              </p>
+              <h5 id="datasecurity">Is my data safe?</h5>
+              <p>
+                The only data that Stability stores about you are your preferences (units, what graphs you want, settings for those graphs, etc.). We also use a secure id from Google to associate your preferences with your account. We do not store any of your health and fitness data. Since we don't have it, no one can steal it from us.
+              </p>
+              <p>
+                Details: All of your health data is processed with client-side Javascript. That means it never goes to our servers. Your computer just calls up Google's servers directly, asks for your data, and does stuff to it. And, since Stability is 100% open source, you don't need to take our word for it - you can go <a href="https://github.com/emilydolson/stability"> look at the code </a> yourself.
+              </p>
+              <h5 id="safemode">What is safe mode?</h5>
+              <p>
+                For some people, seeing references to things like weight and calories can be damaging to mental health. Turning safe mode on hides all references to these concepts. It will not delete existing graphs (click the x in the upper right to do that), but it will remove the option to add y-axis labels to the weight graph if they aren't already present.
+              </p>
+              <p>
+                Are there other things that you find triggering and would like to hide in safe mode? <a href="mailto:info@stability-app.com"> Let me know </a> and I'll add them.
+              </p>
+
+              <h5 id="featurereq"> I have a feature request! </h5>
+              </p>
+                Great! <a href="mailto:info@stability-app.com"> Let me know </a> and I'll see what I can do. Or better yet, if you can code, <a href="https://github.com/emilydolson/stability"> send me a pull request</a>.
+              </p>
+              <h5 id="whoareyou"> Who are you? </h5>
+              <p>
+                I'm a graduate student in computer science and biology. I have no particular expertise in fitness, and I firmly believe that if there were more female programmers, someone else would have already made a better version of this app. But I've been waiting for six years, now, so I finally decided to take matters into my own hands.
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    </body>
+
+</html>

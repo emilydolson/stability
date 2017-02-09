@@ -91,8 +91,8 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href="faq.html">FAQ</a>
               <!-- <a class="mdl-navigation__link" href="">Link</a>
-              <a class="mdl-navigation__link" href="">Link</a>
               <a class="mdl-navigation__link" href="">Link</a> -->
               <!-- <a class="mdl-navigation__link">    </a> -->
             </nav>
@@ -111,6 +111,9 @@
             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="safe-mode-switch">
               <input type="checkbox" id="safe-mode-switch" class="mdl-switch__input">
               <span class="mdl-switch__label">Safe Mode</span>
+              <div class="mdl-tooltip" for="safe-mode-switch">
+                Hides potentially triggering content
+              </div>
             </label>
 
             <div class="mdl-layout-spacer"><br></div>
@@ -221,6 +224,17 @@
     </div>
 
 
+    <script>
+      // Google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-39040079-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
 
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <!-- <script>
