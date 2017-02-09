@@ -491,9 +491,10 @@ function restoreSettings(settings) {
   }
   console.log(res);
   if (res[1]) {
-    d3.select("#safe-mode-switch").property("checked", true);
+    document.getElementById("safe-mode-switch").checked = true;
     safeModeOn();
   } else {
+    document.getElementById("safe-mode-switch").checked = false;
     d3.select("#safe-mode-switch").property("checked", false);
     safeModeOff();
   }
