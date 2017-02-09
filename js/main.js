@@ -483,11 +483,11 @@ function getPreferences() {
 
 function restoreSettings(settings) {
   res = JSON.parse(settings);
-  graphs = settings[1];
+  graphs = res[0];
   for (graph in graphs) {
     addCard(graphs[graph].options.variable, graphs[graph].options);
   }
-  if (bool(res[2])) {
+  if (bool(res[1])) {
     d3.select("#safe-mode-switch").property("checked", true);
   } else {
     d3.select("#safe-mode-switch").property("checked", false);

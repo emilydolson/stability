@@ -36,11 +36,11 @@ def update_settings():
     count = c.fetchall()
     if count[0][0]:  # user is in db
         c.execute(
-            "UPDATE settings SET graph_settings=\'{vl}\',safe_mode=\'{safe}\' WHERE userid=\'{us}\'"
-            .format(vl=value, us=userid, safe=safe))
+            "UPDATE settings SET graph_settings=\'{vl}\' WHERE userid=\'{us}\'"
+            .format(vl=value, us=userid))
     else:
-        c.execute("INSERT INTO settings values (\'{ur}\',\'{val}\',\'{safe}\')"
-                  .format(ur=userid, val=value, safe=safe))
+        c.execute("INSERT INTO settings values (\'{ur}\',\'{val}\')"
+                  .format(ur=userid, val=value))
     conn.commit()
 
 
