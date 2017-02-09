@@ -262,9 +262,9 @@ function addCard(variable, options=null) {
     makeTimePeriodRadioButton(list_el, variable, "week", false);
     makeTimePeriodRadioButton(list_el, variable, "month", false);
 
-    $(variable + "-time-unit-day").change(function(){updateUnit(variable, "day");});
-    $(variable + "-time-unit-week").change(function(){console.log("test");updateUnit(variable, "week");});
-    $(variable + "-time-unit-month").change(function(){updateUnit(variable, "month");});
+    $("#"+variable + "-time-unit-day").change(function(){updateUnit(variable, "day");});
+    $("#"+variable + "-time-unit-week").change(function(){console.log("test");updateUnit(variable, "week");});
+    $("#"+variable + "-time-unit-month").change(function(){updateUnit(variable, "month");});
 
   }
 
