@@ -492,8 +492,9 @@ function restoreSettings(settings) {
   console.log(res);
   if (res[1]) {
     d3.select("#safe-mode-switch").property("checked", true);
-    // safeModeOn()
+    safeModeOn();
   } else {
     d3.select("#safe-mode-switch").property("checked", false);
+    safeModeOff();
   }
 }
