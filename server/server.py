@@ -64,7 +64,7 @@ def get_settings():
 
     c.execute("SELECT * FROM settings WHERE userid=\'{user}\'"
               .format(user=userid))
-    return c.fetchall()[0]
+    return str(c.fetchall()[0])
 
 
 @app.route("/<filepath:path>")
