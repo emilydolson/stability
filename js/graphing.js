@@ -155,7 +155,7 @@ function calcStepCount(all_data, unit){
   all_data.stepcount[unit] = data;
 }
 
-function calcDistanceTotal(all_data){
+function calcDistanceTotal(all_data, unit){
   if (!all_data.totaldistance) {
     all_data.totaldistance = {};
   } else if (all_data.totaldistance[unit]) {

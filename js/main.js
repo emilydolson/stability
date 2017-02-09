@@ -263,7 +263,7 @@ function addCard(variable, options=null) {
     makeTimePeriodRadioButton(list_el, variable, "month", false);
 
     $(variable + "-time-unit-day").on("click", function(){updateUnit(variable, "day");});
-    $(variable + "-time-unit-week").on("click", function(){updateUnit(variable, "week");});
+    $(variable + "-time-unit-week").on("click", function(){console.log("test");updateUnit(variable, "week");});
     $(variable + "-time-unit-month").on("click", function(){updateUnit(variable, "month");});
 
   }
