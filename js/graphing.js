@@ -95,7 +95,6 @@ function makeGraph(data, svg_id, options){
 // Data munging
 
 function calcSleepTimeData(all_data, unit){
-  console.log(unit)
   if (!all_data.sleeptime) {
     all_data.sleeptime = {};
   } else if (all_data.sleeptime[unit]) {
