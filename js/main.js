@@ -492,10 +492,12 @@ function restoreSettings(settings) {
   console.log(res);
   if (res[1]) {
     document.getElementById("safe-mode-switch").checked = true;
+    document.getElementById("safe-mode-switch").parentElement.MaterialSwitch.on()
     safeModeOn();
   } else {
     document.getElementById("safe-mode-switch").checked = false;
     d3.select("#safe-mode-switch").property("checked", false);
+    document.getElementById("safe-mode-switch").parentElement.MaterialSwitch.off()
     safeModeOff();
   }
 }
