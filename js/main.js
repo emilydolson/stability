@@ -323,7 +323,7 @@ function callMakeGraph(options){
   console.log(options);
   if (options.variable == "Sleep") {
     getActivity("com.google.activity.segment", options.unit, function() {
-      calcSleepTimeData(all_data);
+      calcSleepTimeData(all_data, options.unit);
       makeGraph(all_data.sleeptime[options.unit], options.variable + options.index + "-graph", options);
       updatePreferences();
     });
@@ -334,19 +334,19 @@ function callMakeGraph(options){
     });
   } else if (options.variable == "Active-time") {
     getActivity("com.google.activity.segment", options.unit, function() {
-      calcActiveTimeData(all_data);
+      calcActiveTimeData(all_data, options.unit);
       makeGraph(all_data.activetime[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Steps") {
     getActivity("com.google.step_count.delta", options.unit, function() {
-      calcStepCount(all_data);
+      calcStepCount(all_data, options.unit);
       makeGraph(all_data.stepcount[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Distance") {
     getActivity("com.google.distance.delta", options.unit, function() {
-      calcDistanceTotal(all_data);
+      calcDistanceTotal(all_data, options.unit);
       makeGraph(all_data.totaldistance[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
