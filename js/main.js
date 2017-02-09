@@ -320,6 +320,7 @@ function makeTimePeriodRadioButton(list_el, variable, unit, checked) {
 }
 
 function callMakeGraph(options){
+  console.log(options);
   if (options.variable == "Sleep") {
     getActivity("com.google.activity.segment", options.unit, function() {
       calcSleepTimeData(all_data);
@@ -513,7 +514,7 @@ function restoreSettings(settings) {
   for (graph in graphs) {
     addCard(graphs[graph].options.variable, graphs[graph].options);
   }
-  console.log(res);
+
   if (res[1]) {
     document.getElementById("safe-mode-switch").checked = true;
     document.getElementById("safe-mode-switch").parentElement.MaterialSwitch.on()
