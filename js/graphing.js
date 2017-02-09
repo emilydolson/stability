@@ -94,75 +94,83 @@ function makeGraph(data, svg_id, options){
 
 // Data munging
 
-function calcSleepTimeData(all_data){
-  if (all_data.sleeptime) {
+function calcSleepTimeData(all_data, unit){
+  if (!all_data.sleeptime) {
+    all_data.sleeptime = {};
+  } else if (all_data.sleeptime[unit]) {
     return;
   }
   sleep_data = [];
-  for (i in all_data["com.google.activity.segment"]["day"]) {
-    if (all_data["com.google.activity.segment"]["day"][i].dataset[0].point.length > 0) {
-      sleep_data.push([new Date(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+  for (i in all_data["com.google.activity.segment"][unit]) {
+    if (all_data["com.google.activity.segment"][unit][i].dataset[0].point.length > 0) {
+      sleep_data.push([new Date(+all_data["com.google.activity.segment"][unit][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
-    for (j in all_data["com.google.activity.segment"]["day"][i].dataset[0].point){
-      if (SLEEP_NUMBERS.includes(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[0].intVal)) {
-        sleep_data[sleep_data.length-1][1] += +all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[1].intVal/3600000;
+    for (j in all_data["com.google.activity.segment"][unit][i].dataset[0].point){
+      if (SLEEP_NUMBERS.includes(+all_data["com.google.activity.segment"][unit][i].dataset[0].point[j].value[0].intVal)) {
+        sleep_data[sleep_data.length-1][1] += +all_data["com.google.activity.segment"][unit][i].dataset[0].point[j].value[1].intVal/3600000;
       }
     }
   }
-  all_data.sleeptime = sleep_data;
+  all_data.sleeptime[unit] = sleep_data;
 }
 
-function calcActiveTimeData(all_data){
-  if (all_data.activetime) {
+function calcActiveTimeData(all_data, unit){
+  if (!all_data.activetime) {
+    all_data.activetime = {};
+  } else if (all_data.activetime[unit]) {
     return;
   }
 
   data = [];
-  for (i in all_data["com.google.activity.segment"]["day"]) {
-    if (all_data["com.google.activity.segment"]["day"][i].dataset[0].point.length > 0) {
-      data.push([new Date(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+  for (i in all_data["com.google.activity.segment"][unit]) {
+    if (all_data["com.google.activity.segment"][unit][i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_data["com.google.activity.segment"][unit][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
-    for (j in all_data["com.google.activity.segment"]["day"][i].dataset[0].point){
-      if (!NON_ACTIVE_NUMBERS.includes(+all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[0].intVal)) {
-        data[data.length-1][1] += +all_data["com.google.activity.segment"]["day"][i].dataset[0].point[j].value[1].intVal/3600000;
+    for (j in all_data["com.google.activity.segment"][unit][i].dataset[0].point){
+      if (!NON_ACTIVE_NUMBERS.includes(+all_data["com.google.activity.segment"][unit][i].dataset[0].point[j].value[0].intVal)) {
+        data[data.length-1][1] += +all_data["com.google.activity.segment"][unit][i].dataset[0].point[j].value[1].intVal/3600000;
       }
     }
   }
-  all_data.activetime = data;
+  all_data.activetime[unit] = data;
 }
 
-function calcStepCount(all_data){
-  if (all_data.stepcount) {
+function calcStepCount(all_data, unit){
+  if (!all_data.stepcount) {
+    all_data.stepcount = {};
+  } else if (all_data.stepcount[unit]) {
     return;
   }
 
   data = [];
-  for (i in all_data["com.google.step_count.delta"]["day"]) {
-    if (all_data["com.google.step_count.delta"]["day"][i].dataset[0].point.length > 0) {
-      data.push([new Date(+all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+  for (i in all_data["com.google.step_count.delta"][unit]) {
+    if (all_data["com.google.step_count.delta"][unit][i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_data["com.google.step_count.delta"][unit][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
-    for (j in all_data["com.google.step_count.delta"]["day"][i].dataset[0].point){
-      data[data.length-1][1] += +all_data["com.google.step_count.delta"]["day"][i].dataset[0].point[j].value[0].intVal;
+    for (j in all_data["com.google.step_count.delta"][unit][i].dataset[0].point){
+      data[data.length-1][1] += +all_data["com.google.step_count.delta"][unit][i].dataset[0].point[j].value[0].intVal;
     }
   }
-  all_data.stepcount = data;
+  all_data.stepcount[unit] = data;
 }
 
 function calcDistanceTotal(all_data){
-  if (all_data.totaldistance) {
+  if (!all_data.totaldistance) {
+    all_data.totaldistance = {};
+  } else if (all_data.totaldistance[unit]) {
     return;
   }
 
   data = [];
-  for (i in all_data["com.google.distance.delta"]["day"]) {
-    if (all_data["com.google.distance.delta"]["day"][i].dataset[0].point.length > 0) {
-      data.push([new Date(+all_data["com.google.distance.delta"]["day"][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
+  for (i in all_data["com.google.distance.delta"][unit]) {
+    if (all_data["com.google.distance.delta"][unit][i].dataset[0].point.length > 0) {
+      data.push([new Date(+all_data["com.google.distance.delta"][unit][i].dataset[0].point[0].startTimeNanos/1000000), 0]);
     }
-    for (j in all_data["com.google.distance.delta"]["day"][i].dataset[0].point){
-      data[data.length-1][1] += +all_data["com.google.distance.delta"]["day"][i].dataset[0].point[j].value[0].fpVal;
+    for (j in all_data["com.google.distance.delta"][unit][i].dataset[0].point){
+      data[data.length-1][1] += +all_data["com.google.distance.delta"][unit][i].dataset[0].point[j].value[0].fpVal;
     }
   }
-  all_data.totaldistance = data;
+  all_data.totaldistance[unit] = data;
 }
 
 function extractDataFromStreams(streams) {

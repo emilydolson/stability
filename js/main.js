@@ -13,28 +13,32 @@ var defaults = {
                    "y_axis_ticks": true,
                    "confint": true,
                    "points": true,
-                   "index" : 0
+                   "index" : 0,
+                   "unit"  : "day"
                   },
   "Steps" :       {"variable": "Steps",
                    "smoothing": .3,
                    "y_axis_ticks": true,
                    "confint": true,
                    "points": true,
-                   "index" : 0
+                   "index" : 0,
+                   "unit"  : "day"
                   },
   "Distance" :    {"variable": "Distance",
                    "smoothing": .3,
                    "y_axis_ticks": true,
                    "confint": true,
                    "points": true,
-                   "index" : 0
+                   "index" : 0,
+                   "unit"  : "day"
                   },
   "Sleep" :       {"variable": "Sleep",
                    "smoothing": .3,
                    "y_axis_ticks": true,
                    "confint": true,
                    "points": true,
-                   "index" : 0
+                   "index" : 0,
+                   "unit"  : "day"
                   },
   "Weight" :      {"variable": "Weight",
                    "smoothing": .9,
@@ -251,11 +255,18 @@ function addCard(variable, options=null) {
 
   // Loess bandwidth slider
 
-  var list_el = settings_list.append("li");
+  if (options.variable != "Weight"){
+    var list_el = settings_list.append("li");
 
-  makeTimePeriodRadioButton(list_el, variable, "day", true);
-  makeTimePeriodRadioButton(list_el, variable, "week", false);
-  makeTimePeriodRadioButton(list_el, variable, "month", false);
+    makeTimePeriodRadioButton(list_el, variable, "day", true);
+    makeTimePeriodRadioButton(list_el, variable, "week", false);
+    makeTimePeriodRadioButton(list_el, variable, "month", false);
+
+    $(variable + "-time-unit-day").on("click", function(){updateUnit(variable, "day");});
+    $(variable + "-time-unit-week").on("click", function(){updateUnit(variable, "week");});
+    $(variable + "-time-unit-month").on("click", function(){updateUnit(variable, "month");});
+
+  }
 
   list_el = settings_list.append("li");
 
@@ -310,9 +321,9 @@ function makeTimePeriodRadioButton(list_el, variable, unit, checked) {
 
 function callMakeGraph(options){
   if (options.variable == "Sleep") {
-    getActivity("com.google.activity.segment", "day", function() {
+    getActivity("com.google.activity.segment", options.unit, function() {
       calcSleepTimeData(all_data);
-      makeGraph(all_data.sleeptime, options.variable + options.index + "-graph", options);
+      makeGraph(all_data.sleeptime[options.unit], options.variable + options.index + "-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Weight") {
@@ -321,21 +332,21 @@ function callMakeGraph(options){
       updatePreferences();
     });
   } else if (options.variable == "Active-time") {
-    getActivity("com.google.activity.segment", "day", function() {
+    getActivity("com.google.activity.segment", options.unit, function() {
       calcActiveTimeData(all_data);
-      makeGraph(all_data.activetime, options.variable + options.index+"-graph", options);
+      makeGraph(all_data.activetime[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Steps") {
-    getActivity("com.google.step_count.delta", "day", function() {
+    getActivity("com.google.step_count.delta", options.unit, function() {
       calcStepCount(all_data);
-      makeGraph(all_data.stepcount, options.variable + options.index+"-graph", options);
+      makeGraph(all_data.stepcount[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   } else if (options.variable == "Distance") {
-    getActivity("com.google.distance.delta", "day", function() {
+    getActivity("com.google.distance.delta", options.unit, function() {
       calcDistanceTotal(all_data);
-      makeGraph(all_data.totaldistance, options.variable + options.index+"-graph", options);
+      makeGraph(all_data.totaldistance[options.unit], options.variable + options.index+"-graph", options);
       updatePreferences();
     });
   }
@@ -384,6 +395,18 @@ function updateSmoothness(variable) {
     .attr("id", variable+"-graph-spinner");
   callMakeGraph(g.options);
 }
+
+function updateUnit(variable, unit) {
+  var g = graphs[variable+"-graph"];
+  g.options.unit = unit;
+  g.vis.remove();
+  d3.select("#"+variable+"-graph")
+    .append("div")
+    .classed("mdl-spinner mdl-js-spinner is-active center", true)
+    .attr("id", variable+"-graph-spinner");
+  callMakeGraph(g.options);
+}
+
 
 function getDataFromStream(streamId) {
   console.log("https://www.googleapis.com/fitness/v1/users/me/dataSources/"+streamId+"/datasets/0-"+CURR_TIME);
