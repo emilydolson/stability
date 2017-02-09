@@ -464,8 +464,7 @@ function updatePreferences() {
       type:"POST",
       contentType:"application/json",
       data:JSON.stringify({"user":id_token,
-                           "value":JSON.stringify(graphs),
-                           "safe":d3.select("#safe-mode-switch").property("checked")
+                           "value":JSON.stringify([graphs, d3.select("#safe-mode-switch").property("checked")])
                          }),
       success:function() {console.log("preferences updated");},
       error: function() {console.log("failed to update preferences");}
@@ -484,7 +483,7 @@ function getPreferences() {
 
 function restoreSettings(settings) {
   res = JSON.parse(settings);
-  graphs = settings[1]
+  graphs = settings[1];
   for (graph in graphs) {
     addCard(graphs[graph].options.variable, graphs[graph].options);
   }
