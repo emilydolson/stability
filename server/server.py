@@ -15,6 +15,7 @@ c = conn.cursor()
 def update_settings():
     username = request.json["user"]
     value = request.json["value"]
+    safe = request.json["safe"]
 
     try:
         idinfo = client.verify_id_token(username, ID)
@@ -35,11 +36,11 @@ def update_settings():
     count = c.fetchall()
     if count[0][0]:  # user is in db
         c.execute(
-            "UPDATE settings SET graph_settings=\'{vl}\' WHERE userid=\'{us}\'"
-            .format(vl=value, us=userid))
+            "UPDATE settings SET graph_settings=\'{vl}\',safe_mode=\'{safe}\' WHERE userid=\'{us}\'"
+            .format(vl=value, us=userid, safe=safe))
     else:
-        c.execute("INSERT INTO settings values (\'{user}\', \'{val}\')"
-                  .format(user=userid, val=value))
+        c.execute("INSERT INTO settings values (\'{ur}\',\'{val}\',\'{safe}\')"
+                  .format(ur=userid, val=value, safe=safe))
     conn.commit()
 
 
@@ -63,7 +64,7 @@ def get_settings():
 
     c.execute("SELECT * FROM settings WHERE userid=\'{user}\'"
               .format(user=userid))
-    return c.fetchall()[0][1]
+    return c.fetchall()[0]
 
 
 @app.route("/<filepath:path>")

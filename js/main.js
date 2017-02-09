@@ -463,7 +463,10 @@ function updatePreferences() {
   $.ajax("http://www.stability-app.com/update_settings", {
       type:"POST",
       contentType:"application/json",
-      data:JSON.stringify({"user":id_token, "value":JSON.stringify(graphs)}),
+      data:JSON.stringify({"user":id_token,
+                           "value":JSON.stringify(graphs),
+                           "safe":d3.select("#safe-mode-switch").property("checked")
+                         }),
       success:function() {console.log("preferences updated");},
       error: function() {console.log("failed to update preferences");}
   });
@@ -480,8 +483,13 @@ function getPreferences() {
 }
 
 function restoreSettings(settings) {
-  graphs = JSON.parse(settings);
+  graphs = JSON.parse(settings[1]);
   for (graph in graphs) {
     addCard(graphs[graph].options.variable, graphs[graph].options);
+  }
+  if (bool(settings[2])) {
+    d3.select("#safe-mode-switch").property("checked", true);
+  } else {
+    d3.select("#safe-mode-switch").property("checked", false);
   }
 }
