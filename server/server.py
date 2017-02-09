@@ -15,7 +15,6 @@ c = conn.cursor()
 def update_settings():
     username = request.json["user"]
     value = request.json["value"]
-    safe = request.json["safe"]
 
     try:
         idinfo = client.verify_id_token(username, ID)
